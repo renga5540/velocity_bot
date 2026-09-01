@@ -1,11 +1,61 @@
 <!DOCTYPE html>
-<html><head><title>VELOCITY PRO</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{background:#000;color:#fff;font-family:Arial;margin:0} .head{background:#000;padding:12px;text-align:center;border-bottom:2px solid #00ff88;color:#00ff88;font-weight:bold} .tv{height:450px} table{width:100%;border-collapse:collapse;background:#0f0f0f} th{background:#00ff88;color:#000;padding:8px;font-size:12px} td{padding:7px;border:1px solid #222;text-align:center;font-size:13px} .buy{color:#00ff88} .sell{color:#ff5555} .live{color:#00ff88;animation:bl 1s infinite} @keyframes bl{50%{opacity:0}}</style>
-<script src="https://s3.tradingview.com/tv.js"></script></head><body>
-<div class="head">🚀 VELOCITY PRO AI - 100 STRATEGY + LIVE BOT + WORLD MARKET <span class="live">● LIVE</span> - <span id="time"></span></div>
-<div id="tradingview" class="tv"></div>
-<table><thead><tr><th>SYMBOL</th><th>LIVE</th><th>ENTRY</th><th>T1</th><th>T2</th><th>T3</th><th>SL</th><th>ACC%</th><th>SIGNAL</th></tr></thead><tbody id="tb"></tbody></table>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEURALTRADER PRO - AI TRADING</title>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#050a14;color:#cde;font-family:Inter,sans-serif}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#0a1222;border-bottom:1px solid #0ff3}
+.logo{font-family:Orbitron;color:#fff;font-size:22px}.logo b{color:#39ff14}
+.nav{display:flex;gap:8px}.nav div{padding:6px 12px;border-radius:6px;background:#111a2e;color:#8aa;cursor:pointer;font-size:13px}.nav.active{background:#0ff2;color:#000;box-shadow:0 0 10px #0ff}
+.live-dot{color:#39ff14;animation:blink 1s infinite} @keyframes blink{50%{opacity:0}}
+.wrap{padding:12px;display:grid;gap:12px}
+.chart-box{background:#0a1222;border:1px solid #123;border-radius:12px;padding:10px;box-shadow:0 0 20px #0ff1}
+.chart-head{display:flex;justify-content:space-between;color:#fff;font-weight:600}
+.price{color:#39ff14;font-size:28px;font-weight:700}.price span{font-size:16px;color:#aaa}
+#tv{height:380px;margin-top:10px}
+.grid2{display:grid;grid-template-columns:1.3fr 0.7fr;gap:12px}
+.card{background:#0a1222;border:1px solid #123;border-radius:12px;padding:12px}
+.card h3{color:#0ff;font-size:16px;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:13px} th{color:#8aa;text-align:left;padding:6px} td{padding:7px 6px;border-top:1px solid #122}
+.buy{background:#39ff14;color:#000;padding:3px 10px;border-radius:5px;font-weight:700;font-size:12px}.sell{background:#ff3b3b;color:#fff;padding:3px 10px;border-radius:5px;font-weight:700;font-size:12px}
+.acc{background:#122;color:#39ff14;padding:2px 6px;border-radius:4px;border:1px solid #39ff14}
+.toggle{width:36px;height:20px;background:#222;border-radius:10px;position:relative;display:inline-block}.toggle.on{background:#39ff14}.toggle i{width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;display:block}.toggle.on i{left:18px}
+.bot-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.bot-box{background:#111a2e;padding:10px;border-radius:8px}
+.bot-box b{color:#39ff14;font-size:18px}
+.footer{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:1px solid #39ff14;padding:5px;text-align:center;color:#39ff14;font-size:12px;letter-spacing:1px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.bot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">⬢ NEURALTRADER <b>PRO</b></div><div class="nav"><div class="active">Dashboard</div><div>Markets</div><div>Bots</div><div>Strategies</div><div>Portfolio</div><div>Risk Management</div></div><div><span class="live-dot">● LIVE</span> 👤 JD</div></div>
+<div class="wrap">
+<div class="chart-box"><div class="chart-head"><div>BTC/USDT • BINANCE • 1H <span style="background:#123;padding:3px 8px;border-radius:5px;font-size:11px;margin-left:8px">TradingView</span> <span style="background:#39ff14;color:#000;padding:3px 8px;border-radius:5px;font-size:11px">Real-Time</span></div><div><button style="background:#222;color:#fff;border:0;padding:4px 8px;border-radius:5px">1m</button> <button style="background:#222;color:#fff;border:0;padding:4px 8px;border-radius:5px">5m</button> <button style="background:#0ff;color:#000;border:0;padding:4px 8px;border-radius:5px">1H</button> <button style="background:#222;color:#fff;border:0;padding:4px 8px;border-radius:5px">1D</button></div></div>
+<div class="price" id="btcPrice">64,218.35 USDT <span id="btcChange">+1,247.52 (+1.98%) ▲</span><div style="font-size:11px;color:#8aa;font-weight:400">Open: 62,970 | High: 64,350 | Low: 62,850 | Vol: 12.45K</div></div>
+<div id="tv"></div></div>
+<div class="grid2">
+<div>
+<div class="card"><h3>: LIVE PRICE TABLE — AI SIGNALS</h3><table><thead><tr><th>Symbol</th><th>Live Price</th><th>Entry</th><th>Target1</th><th>Target2</th><th>Stop Loss</th><th>Accuracy %</th><th>AI Signal</th></tr></thead><tbody id="liveTable"></tbody></table></div>
+<div class="card" style="margin-top:12px"><h3>🤖 ALGO BOT STATUS</h3><div class="bot-grid"><div class="bot-box">Bot Status<br><b>ACTIVE.....</b><br><small>Uptime: 14d 06h 22m</small></div><div class="bot-box">Active Strategy<br><b style="font-size:13px;color:#fff">Momentum Scalping v3.2</b><br><small>Win Rate: 78% | Trades: 124</small></div><div class="bot-box">Risk Level<br><b style="color:#0ff">MODERATE</b><br><small>Max DD: -3.2% | Risk: 1.5%</small></div></div><div style="margin-top:10px;display:flex;justify-content:space-between;font-size:13px"><span>Today's Performance<br><b style="color:#39ff14">P&L: +$8,427.33 (+3.24%) ▲</b></span><span>Win Trades: 19/24</span><span>Total Bots: 7 Running</span></div></div>
+</div>
+<div>
+<div class="card"><h3>✨ 100+ STRATEGIES <span style="background:#39ff14;color:#000;padding:2px 8px;border-radius:10px;font-size:11px;float:right">100+ LOADED</span></h3><div id="strat"></div>
+<div style="background:#0f1a2e;border:1px solid #0ff5;border-radius:10px;padding:10px;margin-top:12px;font-size:12px">Hello John! Markets are bullish today. BTC breakout detected above 64k. Recommend monitoring BUY setups on SOL & ETH.</div>
+<div style="background:#111;border-radius:10px;padding:8px;margin-top:8px;display:flex"><input placeholder="Ask AI for analysis, risk, or strategy..." style="flex:1;background:transparent;border:0;color:#fff;outline:none"><button style="background:#39ff14;border:0;padding:6px 12px;border-radius:6px">→</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">CONNECTED TO BINANCE • WS: ONLINE • LATENCY: 12ms • VELOCITY PRO AI</div>
 <script>
-let data=[{s:"OANDA:XAUUSD",p:71750,e:71700,t1:71850,t2:72000,t3:72200,sl:71550,ac:92,sg:"BUY"},{s:"NIFTY",p:26120,e:26100,t1:26200,t2:26300,t3:26450,sl:26000,ac:89,sg:"BUY"},{s:"BTCUSDT",p:64250,e:64000,t1:64500,t2:65200,t3:66000,sl:63500,ac:86,sg:"BUY"},{s:"BANKNIFTY",p:51200,e:51000,t1:51400,t2:51700,t3:52000,sl:50800,ac:84,sg:"SELL"},{s:"NASDAQ",p:18500,e:18450,t1:18600,t2:18750,t3:18900,sl:18300,ac:80,sg:"BUY"}];
-function upd(){let h="";data.forEach(d=>{d.p+=(Math.random()-0.5)*2; h+=`<tr class=${d.sg=='BUY'?'buy':'sell'}><td><b>${d.s}</b></td><td>${d.p.toFixed(2)} <span class=live>●</span></td><td>${d.e}</td><td>${d.t1}</td><td>${d.t2}</td><td>${d.t3}</td><td>${d.sl}</td><td>${d.ac}%</td><td><b>${d.sg}</b> - 92%</td></tr>`});document.getElementById("tb").innerHTML=h;document.getElementById("time").innerText=new Date().toLocaleTimeString()} setInterval(upd,1000);upd();
-new TradingView.widget({autosize:true,symbol:"MCX:GOLD",interval:"5",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"in",container_id:"tradingview",studies:["STD;SuperTrend"]});
-</script></body></html>
+let coins=[{s:"BTC/USDT",p:64218.35,e:63500,t1:64600,t2:65200,sl:65900,ac:92,sg:"BUY"},{s:"ETH/USDT",p:3482.10,e:3450,t1:3500,t2:3680,sl:3380,ac:88,sg:"BUY"},{s:"SOL/USDT",p:142.36,e:140.00,t1:143.00,t2:145.00,sl:137.00,ac:85,sg:"BUY"},{s:"XRP/USDT",p:0.5421,e:0.5350,t1:0.55,t2:0.5620,sl:0.5750,ac:76,sg:"SELL"},{s:"AVAX/USDT",p:28.94,e:28.50,t1:29.20,t2:29.80,sl:30.40,ac:79,sg:"BUY"}];
+function render(){let h="";coins.forEach(c=>{c.p+=(Math.random()-0.5)*5; let icon=c.s[0]; h+=`<tr><td> ${c.s}</td><td style="color:#39ff14">${c.p.toFixed(2)}</td><td>${c.e}</td><td>${c.t1}</td><td>${c.t2}</td><td style="color:#ff6b6b">${c.sl}</td><td><span class="acc">${c.ac}%</span></td><td><span class="${c.sg=='BUY'?'buy':'sell'}">${c.sg}</span></td></tr>`});document.getElementById("liveTable").innerHTML=h; document.getElementById("btcPrice").innerHTML=coins[0].p.toFixed(2)+" USDT <span id='btcChange'>+1,247.52 (+1.98%) ▲</span>";}
+setInterval(render,1200);render();
+let strats=["Scalping Pro v2.1 - High Frequency - Profit: +12.4% | Sharpe: 2.1","Swing Trend v1.8 - Profit: +8.9% | Sharpe: 1.7","DCA Dollar Cost v1.0 - Profit: +4.2% | Sharpe: 1.2","Breakout Master v4.0 - Profit: +15.6% | Sharpe: 2.4"]; let sh="";strats.forEach((s,i)=>{sh+=`<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #122"><span class="toggle ${i<1?'on':''}"><i></i></span><div><b style="color:#fff;font-size:13px">${s.split(' - ')[0]}</b><br><small style="color:#8aa">${s.split(' - ').slice(1).join(' - ')}</small></div></div>`});document.getElementById("strat").innerHTML=sh;
+new TradingView.widget({autosize:true,symbol:"BINANCE:BTCUSDT",interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA"]});
+</script>
+</body>
+</html>
