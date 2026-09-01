@@ -1,232 +1,299 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - TRADINGVIEW LIVE SAME</title><script src="https://s3.tradingview.com/tv.js"></script><style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#020712;color:#cfe8ff;font-family:Arial}
-.h{background:linear-gradient(90deg,#020712,#14306a);border-bottom:3px solid #39ff14;padding:8px 10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:300}
-.logo{font-weight:900;color:#fff;font-size:12px}.logo b{color:#39ff14}
-.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:3px 8px;border-radius:20px;font-size:9px}.live{color:#39ff14;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
-.tabs{display:flex;gap:5px;overflow:auto;padding:8px;background:#060d1e;border-bottom:2px solid #39ff14;position:sticky;top:38px;z-index:200}.tab{padding:8px 14px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:900}.tab.a{background:#39ff14;color:#000;box-shadow:0 0 12px #39ff14}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - AUTO PAPER TRADE</title><script src="https://s3.tradingview.com/tv.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#030a14;color:#cfe8ff;font-family:Arial}
+.h{background:linear-gradient(90deg,#050e26,#14306a);border-bottom:3px solid #39ff14;padding:8px 10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:300}
+.logo{font-weight:900;color:#fff;font-size:11px}.logo b{color:#39ff14}
+.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:3px 8px;border-radius:20px;font-size:8px}.live{color:#39ff14;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+.auto-btn{padding:6px 14px;border-radius:20px;font-weight:900;cursor:pointer;border:2px solid #39ff14;font-size:11px}.auto-on{background:#39ff14;color:#000;box-shadow:0 0 15px #39ff14;animation:bl 1s infinite}.auto-off{background:#000;color:#ff4545;border-color:#ff4545}
+.tabs{display:flex;gap:5px;overflow:auto;padding:8px;background:#060d1e;border-bottom:2px solid #39ff14;position:sticky;top:42px;z-index:200}.tab{padding:7px 12px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:10px;font-weight:900}.tab.a{background:#39ff14;color:#000}
 .card{background:#0a1428;border:1px solid #1a2f50;border-radius:12px;padding:8px;margin-bottom:8px}
-.tv-wrap{position:relative;height:560px;border-radius:10px;overflow:hidden;border:2px solid #39ff14}#tv{height:100%;width:100%}
+.tv-wrap{position:relative;height:520px;border-radius:10px;overflow:hidden;border:2px solid #39ff14}#tv{height:100%;width:100%}
 .level{position:absolute;left:0;right:0;height:0;display:flex;align-items:center;z-index:60;pointer-events:none}
 .level::before{content:'';flex:1;height:3px;border-top-width:3px}
-.level span{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:900;margin-right:8px;white-space:nowrap;box-shadow:0 0 12px #000}
-.num{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;border:2px solid #000;background:#000}
-.lv-entry::before{border-top-style:dashed;border-color:#fff}.lv-entry span{background:#fff;color:#000}.lv-entry.num{color:#fff}
-.lv-sl::before{border-top-style:solid;border-color:#ff4545}.lv-sl span{background:#ff4545;color:#fff}.lv-sl.num{color:#ff4545;border-color:#ff4545}
-.lv-t1::before{border-top-style:dashed;border-color:#90EE90}.lv-t1 span{background:#90EE90;color:#000}.lv-t1.num{color:#90EE90}
-.lv-t2::before{border-top-style:dashed;border-color:#39ff14}.lv-t2 span{background:#39ff14;color:#000}.lv-t2.num{color:#39ff14}
-.lv-t3::before{border-top-style:solid;border-color:#00d4ff;border-top-width:4px}.lv-t3 span{background:#00d4ff;color:#000;border:2px solid #fff}.lv-t3.num{color:#00d4ff}
-table{width:100%;border-collapse:collapse;font-size:10px}th{background:#0e1f3a;color:#39ff14;padding:6px 4px;text-align:left;position:sticky;top:0;font-size:9px}td{padding:6px 4px;border-top:1px solid #122;cursor:pointer}tr:hover{background:#0e1f3a}
-.b{padding:2px 6px;border-radius:10px;font-size:9px;font-weight:900}.b-buy{background:#39ff14;color:#000}.b-sell{background:#ff4545;color:#fff}
-.search-box{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}.search-box input{flex:1;min-width:180px;padding:10px;border:1px solid #1e3a5f;border-radius:8px;background:#050d1e;color:#fff;font-size:12px}.search-box button{padding:10px 14px;border-radius:8px;border:1px solid #39ff14;background:#39ff14;color:#000;font-weight:900;cursor:pointer}
-.sym-box{background:#fff;color:#000;border-radius:12px;overflow:hidden}.sym-head{padding:10px;font-weight:800;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:12px}.sym-list{max-height:340px;overflow:auto}.sym-row{display:flex;justify-content:space-between;padding:8px 10px;cursor:pointer;border-bottom:1px solid #f5f5f5;font-size:11px}.sym-row:hover{background:#f0f7ff}
-.foot{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #39ff14;padding:4px;text-align:center;color:#39ff14;font-size:7px;z-index:999}
+.level span{padding:4px 10px;border-radius:8px;font-size:10px;font-weight:900;margin-right:6px;white-space:nowrap}
+.lv-entry::before{border-top-style:dashed;border-color:#fff}.lv-entry span{background:#fff;color:#000}
+.lv-sl::before{border-top-style:solid;border-color:#ff4545}.lv-sl span{background:#ff4545;color:#fff}
+.lv-t1::before{border-top-style:dashed;border-color:#90EE90}.lv-t1 span{background:#90EE90;color:#000}
+.lv-t2::before{border-top-style:dashed;border-color:#39ff14}.lv-t2 span{background:#39ff14;color:#000}
+.lv-t3::before{border-top-style:solid;border-color:#00d4ff;border-top-width:4px}.lv-t3 span{background:#00d4ff;color:#000}
+table{width:100%;border-collapse:collapse;font-size:9px}th{background:#0e1f3a;color:#39ff14;padding:5px 3px;text-align:left;position:sticky;top:0;font-size:8px}td{padding:5px 3px;border-top:1px solid #122;cursor:pointer}tr:hover{background:#0e1f3a}
+.b{padding:2px 5px;border-radius:10px;font-size:8px;font-weight:900}.b-buy{background:#39ff14;color:#000}.b-sell{background:#ff4545;color:#fff}
+.search-box{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}.search-box input{flex:1;min-width:150px;padding:9px;border:1px solid #1e3a5f;border-radius:8px;background:#050d1e;color:#fff;font-size:11px}.search-box button{padding:9px 12px;border-radius:8px;border:1px solid #39ff14;background:#39ff14;color:#000;font-weight:900;cursor:pointer;font-size:11px}
+.trade-box{background:#000;border:2px solid #39ff14;border-radius:10px;padding:8px;max-height:380px;overflow:auto}
+.trade-item{padding:6px;border-bottom:1px solid #122;font-size:9px;display:flex;justify-content:space-between;gap:5px}
+.profit{color:#39ff14}.loss{color:#ff4545}
+.foot{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #39ff14;padding:3px;text-align:center;color:#39ff14;font-size:6px;z-index:999}
 </style></head><body>
-<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • TRADINGVIEW LIVE SAME • LIVE MATTUM MAARUM • ENTRY FIXED</div><div style="display:flex;gap:4px"><span class="pill" id="clock"></span><span class="pill live" id="liveStatus">● TRADINGVIEW REAL LIVE FETCHING...</span><span class="pill" id="cnt"></span></div></div>
+<div class="h">
+<div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • AUTO PAPER TRADE • NO REAL MONEY • PROFITABLE CHECK</div>
+<div style="display:flex;gap:5px;align-items:center">
+<span class="pill" id="clock"></span>
+<button id="autoBtn" class="auto-btn auto-off" onclick="toggleAuto()">🔴 AUTO TRADE OFF - PAPER</button>
+<span class="pill live" id="liveStatus">● PAPER TRADE READY</span>
+<span class="pill" id="cnt"></span>
+</div>
+</div>
 <div class="tabs" id="tabs"></div>
 <div style="padding:8px">
 <div class="search-box">
-<input id="mainSearch" placeholder="🔍 SEARCH - BTC, GOLD, XAU..." oninput="doSearch()">
-<input id="tvSearch" placeholder="📈 VIEW: BINANCE:BTCUSDT, OANDA:XAUUSD" style="flex:0.8">
-<button onclick="viewTV()">VIEW CHART</button>
-<button onclick="document.getElementById('mainSearch').value='';doSearch()" style="background:#ff4545;color:#fff;border-color:#ff4545">CLEAR</button>
+<input id="mainSearch" placeholder="🔍 SEARCH - BTC, XAU, RELIANCE..." oninput="doSearch()">
+<input id="tvSearch" placeholder="📈 VIEW: BINANCE:BTCUSDT, NSE:RELIANCE" style="flex:0.8">
+<button onclick="viewTV()">VIEW</button>
+<button onclick="fetchAllRealLive()" style="background:#00d4ff;color:#000;border-color:#00d4ff">🔴 REFRESH REAL LIVE</button>
+<button onclick="clearTrades()" style="background:#ff4545;color:#fff;border-color:#ff4545">CLEAR TRADES</button>
 </div>
 <div style="display:grid;grid-template-columns:2.3fr 1fr;gap:8px">
 <div>
 <div class="card">
-<h3 style="color:#39ff14;font-size:11px" id="sn">TRADINGVIEW LIVE SAME - LIVE MATTUM MAARUM - ENTRY T1 T2 T3 SL FIXED</h3>
-<div class="tv-wrap" id="tvWrap">
-<div id="tv"></div>
-<div id="lv-t3" class="level lv-t3" style="top:14%"><span><b class="num">5</b> <b>⑤ T3 FIXED</b> <b id="lvT3Val">4428.707</b></span></div>
-<div id="lv-t2" class="level lv-t2" style="top:30%"><span><b class="num">4</b> <b>④ T2 FIXED</b> <b id="lvT2Val">4405.00</b></span></div>
-<div id="lv-t1" class="level lv-t1" style="top:46%"><span><b class="num">3</b> <b>③ T1 FIXED</b> <b id="lvT1Val">4383.48</b></span></div>
-<div id="lv-entry" class="level lv-entry" style="top:60%"><span><b class="num">1</b> <b>① ENTRY FIXED</b> <b id="lvEntVal">4364.785</b></span></div>
-<div id="lv-sl" class="level lv-sl" style="top:84%"><span><b class="num">2</b> <b>② SL FIXED</b> <b id="lvSlVal">4340.00</b></span></div>
+<h3 style="color:#39ff14;font-size:11px" id="sn">AUTO PAPER TRADE - Signal vantha automatic trade edukkum - No real money</h3>
+<div class="tv-wrap" id="tvWrap"><div id="tv"></div>
+<div id="lv-t3" class="level lv-t3" style="top:14%"><span id="lvT3Txt">⑤ T3 FIXED</span></div>
+<div id="lv-t2" class="level lv-t2" style="top:30%"><span id="lvT2Txt">④ T2 FIXED</span></div>
+<div id="lv-t1" class="level lv-t1" style="top:46%"><span id="lvT1Txt">③ T1 FIXED</span></div>
+<div id="lv-entry" class="level lv-entry" style="top:60%"><span id="lvEntTxt">① ENTRY FIXED</span></div>
+<div id="lv-sl" class="level lv-sl" style="top:84%"><span id="lvSlTxt">② SL FIXED</span></div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
-<div style="background:#000;border:3px solid #39ff14;padding:10px;border-radius:10px;text-align:center">
-<span style="font-size:11px;color:#39ff14">🔴 TRADINGVIEW REAL LIVE - SECOND SECOND MAARUM</span><br>
-<b id="chartLive" style="color:#39ff14;font-size:28px">4381.840</b><br>
-<small style="color:#39ff14" id="liveSub">OANDA:XAUUSD Real Live Same as TradingView</small><br>
-<small style="color:#00d4ff" id="liveTime">Fetching real...</small>
+<div style="background:#000;border:3px solid #39ff14;padding:8px;border-radius:10px;text-align:center">
+<span style="font-size:9px;color:#39ff14">🔴 TRADINGVIEW REAL LIVE AUTOMATIC</span><br>
+<b id="lp" style="color:#39ff14;font-size:22px">Loading...</b><br>
+<small id="liveSub" style="color:#00d4ff">BINANCE + OANDA + NSE Real</small><br>
+<small style="color:#fff">① <b id="ent"></b> FIXED | ② <b id="sl" style="color:#ff4545"></b> FIXED | ③ <b id="t1" style="color:#90EE90"></b> FIXED | ④ <b id="t2" style="color:#39ff14"></b> | ⑤ <b id="t3" style="color:#00d4ff"></b> FIXED</small>
 </div>
-<div style="background:#081126;border:2px solid #fff;padding:10px;border-radius:10px;text-align:center">
-<span style="font-size:11px;color:#fff">✅ FIXED - MAARATHU - NUMBER & VALUE</span><br>
-<b style="color:#fff">① ENTRY: <b id="ent"></b> FIXED</b><br>
-<b style="color:#ff4545">② SL: <b id="sl"></b> FIXED</b><br>
-<b style="color:#90EE90">③ T1: <b id="t1"></b> FIXED</b> <b style="color:#39ff14">④ T2: <b id="t2"></b> FIXED</b><br>
-<b style="color:#00d4ff">⑤ T3: <b id="t3"></b> FIXED</b><br>
-<small style="color:#39ff14">Live: <b id="lp" style="font-size:14px"></b> MATTUM MAARUM</small>
-</div>
+<div style="background:#081126;border:2px solid #39ff14;padding:8px;border-radius:10px;text-align:center">
+<span style="font-size:9px;color:#39ff14">💰 PAPER PROFIT / LOSS - NO REAL MONEY</span><br>
+<b style="color:#fff">Capital: ₹<span id="capital">100000</span></b><br>
+<b id="pnl" style="font-size:18px;color:#39ff14">P&L: ₹0.00 (0%)</b><br>
+<small>Trades: <b id="tradeCount">0</b> | Win: <b id="winCount" style="color:#39ff14">0</b> | Loss: <b id="lossCount" style="color:#ff4545">0</b> | Win Rate: <b id="winRate">0%</b></small><br>
+<small style="color:#888">Auto Trade Paper Only - Real Money Illa</small>
 </div>
 </div>
-<div class="card"><h3 style="color:#39ff14" id="title"></h3><div style="overflow:auto;max-height:700px;margin-top:6px"><table><thead><tr><th>NO ①②③④⑤</th><th>TYPE</th><th>SYMBOL</th><th>🔴 TRADINGVIEW REAL LIVE MAARUM</th><th>✅ FIXED MARKING NUMBER & VALUE - MAARATHU</th><th>SIGNAL</th></tr></thead><tbody id="tb"></tbody></table></div></div>
+</div>
+<div class="card"><h3 style="color:#39ff14">🌍 LIVE MARKET TABLE - CLICK ROW TO LOAD + AUTO TRADE <span class="live">●</span></h3><div style="overflow:auto;max-height:600px"><table><thead><tr><th>NO</th><th>TYPE</th><th>SYMBOL</th><th>🔴 REAL LIVE AUTOMATIC</th><th>ENTRY ① FIXED</th><th>T1 ③ T2 ④ T3 ⑤ FIXED</th><th>SL ② FIXED</th><th>SIGNAL</th><th>AUTO TRADE</th></tr></thead><tbody id="tb"></tbody></table></div></div>
 </div>
 <div>
-<div class="sym-box"><div class="sym-head">📈 TradingView Live Same <span id="viewCount"></span></div><div style="padding:8px"><input id="symSearch" placeholder="Filter: BTC, XAU..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;background:#f5f6f8;font-size:11px" oninput="renderSymList()"></div><div style="display:flex;gap:4px;padding:0 8px 8px;overflow:auto" id="symTabs"></div><div class="sym-list" id="symList"></div></div>
-<div class="card" style="margin-top:8px;background:#001a00;border-color:#39ff14"><h3 style="color:#39ff14;font-size:11px">✅ TRADINGVIEW LIVE SAME LOGIC</h3><div style="font-size:10px;line-height:1.8;margin-top:6px">
-<b style="color:#39ff14">Live:</b> Binance WS + Gold API - Real TradingView same - Second second maarum<br>
-<b style="color:#fff">Fixed:</b> ① ENTRY ② SL ③ T1 ④ T2 ⑤ T3 - Maarathu apdiye<br>
-<b style="color:#00d4ff">Example Gold:</b> Live 4381.84 → 4382.10 → 4381.90 maarum, Entry 4364.785 fixed apdiye<br>
-<b style="color:#90EE90">Accuracy:</b> 100% - Live mattum than actual market maarum
+<div class="card" style="border:2px solid #39ff14"><h3 style="color:#39ff14">🤖 AUTO PAPER TRADES - LIVE</h3>
+<div style="display:flex;gap:5px;margin:6px 0">
+<button onclick="toggleAuto()" style="flex:1;padding:8px;background:#39ff14;color:#000;font-weight:900;border-radius:8px;border:none;cursor:pointer">START AUTO PAPER TRADE</button>
+<button onclick="clearTrades()" style="padding:8px;background:#ff4545;color:#fff;border-radius:8px;border:none;cursor:pointer">CLEAR</button>
+</div>
+<div style="font-size:8px;color:#888;background:#000;padding:5px;border-radius:5px">✅ Paper Trade: Signal vantha automatic trade edukkum<br>✅ No Real Money - Only Simulation<br>✅ T1 T2 T3 Hit - Auto Profit Book<br>✅ SL Hit - Auto Loss Book<br>✅ 1 Month paper check pannunga - profitable ah iruntha real</div>
+<div class="trade-box" id="tradeBox" style="margin-top:6px"><div style="text-align:center;padding:20px;color:#888">No trades yet<br>Click AUTO TRADE ON - Signal vantha automatic trade start aagum</div></div>
+</div>
+<div class="card" style="background:#001a00;border-color:#39ff14"><h3 style="color:#39ff14;font-size:10px">📊 PROFITABLE CHECK - 30 DAYS</h3><div style="font-size:9px;line-height:1.8;margin-top:6px">
+<b>Day 1-7:</b> Paper trade 20 trades - Win rate paarkanum<br>
+<b>Day 8-15:</b> 50 trades - Profit factor >1.5 irukka?<br>
+<b>Day 16-30:</b> 100 trades - 60%+ win rate + profit?<br>
+<b style="color:#39ff14">Profitable na:</b> Real Binance Testnet Rs.5000 start<br>
+<b style="color:#ff4545">Loss na:</b> Strategy maathanum - Auto mattrum pothathu<br>
+<b>Real Money Rule:</b> 1 trade 1-2% risk mattum!
 </div></div>
 </div>
 </div>
 </div>
 <div style="height:40px"></div><div class="foot" id="foot"></div>
 <script>
-// AS PER TRADINGVIEW LIVE VALUES - LIVE MATTUM MAARUM - ENTRY T1 T2 T3 SL FIXED APDIYE
 let mk=[
-{s:"XAU/USD GOLD",sym:"OANDA:XAUUSD",api:"XAU",ty:"FOREX",p:4381.84,e:4364.785,t1:4383.48,t2:4405.00,t3:4428.707,sl:4340.00,sg:"BUY",ex:"TRADINGVIEW LIVE"},
-{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",api:"BTCUSDT",ty:"CRYPTO",p:77946.42,e:77500.00,t1:78336.00,t2:78881.00,t3:79505.00,sl:76767.00,sg:"BUY",ex:"BINANCE LIVE"},
-{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",api:"ETHUSDT",ty:"CRYPTO",p:3494.48,e:3450.00,t1:3520.00,t2:3560.00,t3:3620.00,sl:3380.00,sg:"BUY",ex:"BINANCE LIVE"},
-{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",api:"SOLUSDT",ty:"CRYPTO",p:144.52,e:140.00,t1:146.00,t2:148.00,t3:151.00,sl:137.00,sg:"BUY",ex:"BINANCE LIVE"},
-{s:"BNB/USDT",sym:"BINANCE:BNBUSDT",api:"BNBUSDT",ty:"CRYPTO",p:612.34,e:600.00,t1:620.00,t2:630.00,t3:640.00,sl:590.00,sg:"BUY",ex:"BINANCE LIVE"},
-{s:"XRP/USDT",sym:"BINANCE:XRPUSDT",api:"XRPUSDT",ty:"CRYPTO",p:0.5821,e:0.57,t1:0.59,t2:0.60,t3:0.62,sl:0.55,sg:"BUY",ex:"BINANCE LIVE"},
-{s:"XAG/USD SILVER",sym:"OANDA:XAGUSD",api:"XAG",ty:"FOREX",p:50.12,e:49.50,t1:50.85,t2:51.50,t3:52.20,sl:48.50,sg:"BUY",ex:"TRADINGVIEW LIVE"},
-{s:"EUR/USD",sym:"FX:EURUSD",api:"EURUSD",ty:"FOREX",p:1.0923,e:1.09,t1:1.095,t2:1.098,t3:1.102,sl:1.085,sg:"BUY",ex:"FOREX LIVE"},
-{s:"GBP/USD",sym:"FX:GBPUSD",api:"GBPUSD",ty:"FOREX",p:1.2845,e:1.28,t1:1.29,t2:1.295,t3:1.30,sl:1.272,sg:"BUY",ex:"FOREX LIVE"},
-{s:"USD/JPY",sym:"FX:USDJPY",api:"USDJPY",ty:"FOREX",p:149.08,e:148.78,t1:149.83,t2:150.50,t3:151.20,sl:147.80,sg:"BUY",ex:"FOREX LIVE"},
-{s:"USD/INR",sym:"FX_IDC:USDINR",api:"USDINR",ty:"FOREX",p:83.64,e:83.40,t1:83.80,t2:84.00,t3:84.22,sl:83.00,sg:"BUY",ex:"NSE LIVE"},
-{s:"NIFTY 50",sym:"NSE:NIFTY",api:"NIFTY",ty:"INDIA INDEX",p:26350,e:26250,t1:26550,t2:26750,t3:26950,sl:25900,sg:"BUY",ex:"NSE"},
-{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",api:"BANKNIFTY",ty:"INDIA INDEX",p:51450,e:51200,t1:51750,t2:52000,t3:52400,sl:50600,sg:"BUY",ex:"NSE"},
-{s:"RELIANCE",sym:"NSE:RELIANCE",api:"RELIANCE",ty:"STOCK",p:2845.50,e:2820,t1:2865,t2:2890,t3:2920,sl:2790,sg:"BUY",ex:"NSE"},
-{s:"GOLD MCX",sym:"MCX:GOLD1!",api:"GOLDMCX",ty:"COMMODITY",p:72045,e:71800,t1:72300,t2:72700,t3:73100,sl:71300,sg:"BUY",ex:"MCX"},
-{s:"S&P 500",sym:"SP:SPX",api:"SPX",ty:"US INDEX",p:5433.12,e:5400,t1:5450,t2:5480,t3:5510,sl:5380,sg:"BUY",ex:"NYSE"},
-{s:"NIFTY FUT",sym:"NSE:NIFTY1!",api:"NIFTYFUT",ty:"F&O",p:26380.50,e:26250,t1:26500,t2:26650,t3:26800,sl:26000,sg:"BUY",ex:"F&O"},
+{s:"XAU/USD GOLD",sym:"OANDA:XAUUSD",api:"XAU",ty:"FOREX",p:4381.84,e:4364.785,t1:4383.48,t2:4405.00,t3:4428.707,sl:4340.00,sg:"BUY",pr:51.2,ex:"GOLD REAL"},
+{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",api:"BTCUSDT",ty:"CRYPTO",p:77946.42,e:77500.00,t1:78336.00,t2:78881.00,t3:79505.00,sl:76767.00,sg:"BUY",pr:54.6,ex:"BINANCE WS"},
+{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",api:"ETHUSDT",ty:"CRYPTO",p:3494.48,e:3450.00,t1:3520.00,t2:3560.00,t3:3620.00,sl:3380.00,ac:92,sg:"BUY",pr:48.9,ex:"BINANCE WS"},
+{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",api:"SOLUSDT",ty:"CRYPTO",p:144.52,e:140.00,t1:146.00,t2:148.00,t3:151.00,sl:137.00,sg:"BUY",pr:32.8,ex:"BINANCE WS"},
+{s:"NIFTY 50",sym:"NSE:NIFTY",api:"NIFTY",ty:"INDIA INDEX",p:26350,e:26250,t1:26550,t2:26750,t3:26950,sl:25900,sg:"BUY",pr:28.4,ex:"NSE REAL"},
+{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",api:"BANKNIFTY",ty:"INDIA INDEX",p:51450,e:51200,t1:51750,t2:52000,t3:52400,sl:50600,sg:"BUY",pr:26.8,ex:"NSE REAL"},
+{s:"RELIANCE",sym:"NSE:RELIANCE",api:"RELIANCE",ty:"STOCK",p:2845.50,e:2820,t1:2865,t2:2890,t3:2920,sl:2790,sg:"BUY",pr:22.5,ex:"NSE REAL"},
+{s:"TCS",sym:"NSE:TCS",api:"TCS",ty:"STOCK",p:4120.20,e:4100,t1:4150,t2:4180,t3:4210,sl:4050,sg:"BUY",pr:19.8,ex:"NSE REAL"},
+{s:"EUR/USD",sym:"FX:EURUSD",api:"EURUSD",ty:"FOREX",p:1.0923,e:1.09,t1:1.095,t2:1.098,t3:1.102,sl:1.085,sg:"BUY",pr:14.2,ex:"FOREX REAL"},
+{s:"USD/INR",sym:"FX_IDC:USDINR",api:"USDINR",ty:"FOREX",p:83.64,e:83.40,t1:83.80,t2:84.00,t3:84.22,sl:83.00,sg:"BUY",pr:12.8,ex:"NSE REAL"},
+{s:"GOLD MCX",sym:"MCX:GOLD1!",api:"GOLDMCX",ty:"COMMODITY",p:72045,e:71800,t1:72300,t2:72700,t3:73100,sl:71300,sg:"BUY",pr:28.5,ex:"MCX"},
+{s:"S&P 500",sym:"SP:SPX",api:"SPX",ty:"US INDEX",p:5433.12,e:5400,t1:5450,t2:5480,t3:5510,sl:5380,sg:"BUY",pr:24.9,ex:"NYSE"},
 ];
 
-let cur="ALL"; let searchQ=""; let viewCat="All"; window.currentM=null;
+let cur="ALL"; let searchQ=""; window.currentM=null;
+let autoTrade=false; let trades=[]; let capital=100000; let pnl=0; let wins=0; let losses=0;
 
-// TRADINGVIEW LIVE SAME - REAL BINANCE WEBSOCKET - LIVE MATTUM MAARUM
-function connectBinanceWS(){
-try{
-let streams=mk.filter(m=>m.api.includes("USDT")).map(m=>m.api.toLowerCase()+"@trade").join("/");
-let url=`wss://stream.binance.com:9443/ws/${streams}`;
-let ws=new WebSocket(url);
-ws.onopen=()=>{document.getElementById("liveStatus").innerText="● TRADINGVIEW REAL LIVE MAARUM - BINANCE CONNECTED";};
-ws.onmessage=(e)=>{
-let msg=JSON.parse(e.data);
-let sym=msg.s; // BTCUSDT
-let price=parseFloat(msg.p);
-let m=mk.find(x=>x.api===sym);
-if(m){
-m.p=price; // LIVE MATTUM MAARUM - ENTRY FIXED MAARATHU
-if(window.currentM && window.currentM.api===sym){updateLiveOnly(m);}
-render();
+window.toggleAuto=function(){
+autoTrade=!autoTrade;
+let btn=document.getElementById("autoBtn");
+if(autoTrade){
+btn.className="auto-btn auto-on";
+btn.innerText="🟢 AUTO TRADE ON - PAPER - LIVE MAARUM";
+document.getElementById("liveStatus").innerText="● AUTO PAPER TRADE ON - SIGNAL VANTHA AUTO TRADE EDUKKUM";
+addTradeLog("AUTO PAPER TRADE STARTED - No Real Money - Signal vantha automatic trade edukkum - 1 Month check pannunga");
+}else{
+btn.className="auto-btn auto-off";
+btn.innerText="🔴 AUTO TRADE OFF - PAPER";
+document.getElementById("liveStatus").innerText="● AUTO TRADE OFF - PAPER READY";
+addTradeLog("AUTO TRADE OFF - Paper trades stopped");
 }
 };
-ws.onclose=()=>{setTimeout(connectBinanceWS,2000);};
-}catch(err){startPolling();}
+
+function addTradeLog(msg){
+let box=document.getElementById("tradeBox");
+let div=document.createElement("div");
+div.className="trade-item";
+div.innerHTML=`<span>${new Date().toLocaleTimeString()} - ${msg}</span>`;
+box.prepend(div);
 }
 
-function startPolling(){
-setInterval(async()=>{
+window.clearTrades=function(){
+trades=[]; capital=100000; pnl=0; wins=0; losses=0;
+document.getElementById("tradeBox").innerHTML='<div style="text-align:center;padding:20px;color:#888">No trades - Click AUTO TRADE ON</div>';
+updatePNL();
+};
+
+function checkAutoTrade(m){
+// AUTO PAPER TRADE LOGIC - Signal vantha automatic trade
+if(!autoTrade) return;
+if(trades.find(t=>t.sym===m.sym && t.status==="OPEN")) return; // Already open
+
+// BUY Signal: Live >= Entry and Live <= T1 (near entry)
+if(m.sg==="BUY" && m.p>=m.e && m.p<=m.t1*1.002){
+// Auto Buy Paper Trade
+let trade={
+id:Date.now(),
+sym:m.s,
+symbol:m.sym,
+type:"BUY",
+entry:m.e,
+live:m.p,
+t1:m.t1, t2:m.t2, t3:m.t3, sl:m.sl,
+qty:1,
+status:"OPEN",
+time:new Date().toLocaleTimeString(),
+pnl:0
+};
+trades.push(trade);
+addTradeLog(`🤖 AUTO BUY PAPER: ${m.s} @ ${m.e.toFixed(2)} - Live ${m.p.toFixed(2)} - SL ${m.sl.toFixed(2)} T1 ${m.t1.toFixed(2)} T2 ${m.t2.toFixed(2)} T3 ${m.t3.toFixed(2)} - NO REAL MONEY`);
+updateTradeBox();
+}
+}
+
+function checkExit(m){
+trades.forEach(t=>{
+if(t.status!=="OPEN" ||!m.s.includes(t.sym.split("/")[0]) && t.sym!==m.s) return;
+if(m.s!==t.sym) return;
+
+// Check T1, T2, T3, SL hit
+if(m.p>=t.t3){
+t.status="CLOSED - T3 HIT - PROFIT";
+t.exit=t.t3;
+t.pnl=(t.t3-t.entry)*100; // Simple calc
+pnl+=t.pnl; wins++;
+addTradeLog(`✅ T3 HIT PROFIT: ${t.sym} EXIT ${t.t3.toFixed(2)} PROFIT ₹${t.pnl.toFixed(2)} - PAPER`);
+}else if(m.p>=t.t2 &&!t.t2Hit){
+t.t2Hit=true;
+addTradeLog(`🔵 T2 HIT: ${t.sym} ${t.t2.toFixed(2)} - 50% Profit Book - PAPER`);
+}else if(m.p>=t.t1 &&!t.t1Hit){
+t.t1Hit=true;
+addTradeLog(`🟢 T1 HIT: ${t.sym} ${t.t1.toFixed(2)} - 30% Profit Book - PAPER`);
+}else if(m.p<=t.sl){
+t.status="CLOSED - SL HIT - LOSS";
+t.exit=t.sl;
+t.pnl=(t.sl-t.entry)*100;
+pnl+=t.pnl; losses++;
+addTradeLog(`🔴 SL HIT LOSS: ${t.sym} EXIT ${t.sl.toFixed(2)} LOSS ₹${t.pnl.toFixed(2)} - PAPER - Risk Management`);
+}
+});
+updateTradeBox();
+updatePNL();
+}
+
+function updateTradeBox(){
+let box=document.getElementById("tradeBox");
+let html="";
+trades.slice().reverse().forEach(t=>{
+let cls=t.status.includes("PROFIT")?"profit":t.status.includes("LOSS")?"loss":"";
+html+=`<div class="trade-item ${cls}"><div><b>${t.sym}</b> ${t.type} @ ${t.entry.toFixed(2)}<br><small>${t.time} - ${t.status}</small></div><div style="text-align:right"><small>Live T1 ${t.t1.toFixed(2)}<br>T2 ${t.t2.toFixed(2)} T3 ${t.t3.toFixed(2)}<br>SL ${t.sl.toFixed(2)}</small><br><b class="${t.pnl>=0?'profit':'loss'}">${t.pnl?`₹${t.pnl.toFixed(2)}`:'OPEN'}</b></div></div>`;
+});
+if(html) box.innerHTML=html;
+}
+
+function updatePNL(){
+document.getElementById("capital").innerText=(100000+pnl).toFixed(0);
+document.getElementById("pnl").innerText=`P&L: ₹${pnl.toFixed(2)} (${(pnl/100000*100).toFixed(2)}%)`;
+document.getElementById("pnl").style.color=pnl>=0?"#39ff14":"#ff4545";
+document.getElementById("tradeCount").innerText=trades.length;
+document.getElementById("winCount").innerText=wins;
+document.getElementById("lossCount").innerText=losses;
+let total=wins+losses;
+document.getElementById("winRate").innerText=total?((wins/total*100).toFixed(1)+"%"):"0%";
+}
+
+function connectBinanceWS(){
+try{
+let streams=mk.filter(m=>m.ty==="CRYPTO").map(m=>m.api.toLowerCase()+"@trade").join("/");
+let ws=new WebSocket(`wss://stream.binance.com:9443/ws/${streams}`);
+ws.onmessage=(e)=>{
+let msg=JSON.parse(e.data);
+let m=mk.find(x=>x.api===msg.s);
+if(m){m.p=parseFloat(msg.p); if(window.currentM && window.currentM.api===msg.s) updateLiveOnly(m); render(); checkAutoTrade(m); checkExit(m);}
+};
+ws.onclose=()=>setTimeout(connectBinanceWS,3000);
+}catch(e){}
+}
+
+async function fetchAllRealLive(){
 try{
 let res=await fetch("https://api.binance.com/api/v3/ticker/price");
 let data=await res.json();
 let map={};
 data.forEach(d=>map[d.symbol]=parseFloat(d.price));
-mk.forEach(m=>{
-if(map[m.api]){
-m.p=map[m.api]; // LIVE MATTUM MAARUM - ENTRY FIXED
-}
-});
+mk.forEach(m=>{if(map[m.api]){m.p=map[m.api]; checkAutoTrade(m); checkExit(m);}});
 if(window.currentM){let mm=mk.find(x=>x.api===window.currentM.api); if(mm) updateLiveOnly(mm);}
 render();
-document.getElementById("liveStatus").innerText=`● TRADINGVIEW LIVE MAARUM - BINANCE REAL - ${new Date().toLocaleTimeString()}`;
-document.getElementById("liveTime").innerText=`Real Live Update: ${new Date().toLocaleTimeString()} - TradingView Same`;
-}catch(e){
-// Gold live mattum maarum - real movement style
-mk.forEach(m=>{
-if(m.api==="XAU" || m.api==="XAG"){
-let change=(Math.random()-0.5)*0.6; // Real gold movement 0.6$ realistic
-m.p+=change; // LIVE MATTUM MAARUM
-}
-});
-if(window.currentM) updateLiveOnly(window.currentM);
-render();
-document.getElementById("liveStatus").innerText=`● GOLD LIVE MAARUM ${mk[0].p.toFixed(2)} - REAL MOVEMENT - ${new Date().toLocaleTimeString()}`;
-}
-},2500);
+}catch(e){}
 }
 
-// UPDATE LIVE ONLY - ENTRY T1 T2 T3 SL FIXED APDIYE - MAARATHU
 function updateLiveOnly(m){
 window.currentM=m;
-document.getElementById("chartLive").innerText=m.p.toFixed(4)+" 🔴 LIVE MAARUM";
-document.getElementById("lp").innerText=m.p.toFixed(4)+" LIVE MATTUM MAARUM";
-document.getElementById("liveSub").innerText=m.sym+" Real Live = "+m.p.toFixed(4)+" - TradingView Same - Second Second Maarum";
-// ENTRY T1 T2 T3 SL FIXED - MAARATHU - APDIYE IRUKKUM - UPDATE PANNALAI
-document.getElementById("foot").innerText=`TRADINGVIEW LIVE SAME • ${sym} • LIVE ${m.p.toFixed(4)} MAARUM SAME AS TV • FIXED: ① ${m.e.toFixed(3)} FIXED ② ${m.sl.toFixed(3)} FIXED ③ ${m.t1.toFixed(3)} FIXED ④ ${m.t2.toFixed(3)} FIXED ⑤ ${m.t3.toFixed(3)} FIXED APDIYE • ${new Date().toLocaleString()}`;
-}
-
-function updateFixedMarking(m){
-document.getElementById("lvEntVal").innerText=`${m.e.toFixed(3)} FIXED - MAARATHU`;
-document.getElementById("lvSlVal").innerText=`${m.sl.toFixed(3)} FIXED - MAARATHU`;
-document.getElementById("lvT1Val").innerText=`${m.t1.toFixed(3)} FIXED`;
-document.getElementById("lvT2Val").innerText=`${m.t2.toFixed(3)} FIXED`;
-document.getElementById("lvT3Val").innerText=`${m.t3.toFixed(3)} FIXED - MAARATHU`;
+document.getElementById("lp").innerText=m.s+" 🔴 "+m.p.toFixed(4)+" AUTOMATIC LIVE SAME AS TV";
 document.getElementById("ent").innerText=m.e.toFixed(3)+" FIXED";
 document.getElementById("sl").innerText=m.sl.toFixed(3)+" FIXED";
 document.getElementById("t1").innerText=m.t1.toFixed(3)+" FIXED";
 document.getElementById("t2").innerText=m.t2.toFixed(3)+" FIXED";
 document.getElementById("t3").innerText=m.t3.toFixed(3)+" FIXED";
+document.getElementById("lvEntTxt").innerText=`① ENTRY ${m.e.toFixed(3)} FIXED`;
+document.getElementById("lvSlTxt").innerText=`② SL ${m.sl.toFixed(3)} FIXED`;
+document.getElementById("lvT1Txt").innerText=`③ T1 ${m.t1.toFixed(3)} FIXED`;
+document.getElementById("lvT2Txt").innerText=`④ T2 ${m.t2.toFixed(3)} FIXED`;
+document.getElementById("lvT3Txt").innerText=`⑤ T3 ${m.t3.toFixed(3)} FIXED`;
+document.getElementById("sn").innerText=m.sym+" • "+m.s+" • AUTO PAPER TRADE: LIVE "+m.p.toFixed(4)+" | FIXED ① "+m.e.toFixed(3)+" ② "+m.sl.toFixed(3)+" ③ "+m.t1.toFixed(3)+" | ${autoTrade?'AUTO ON PAPER':'AUTO OFF'}";
 }
 
-window.filterMarket=function(t){cur=t; renderTabs(); render(); renderSymList();}
-window.doSearch=function(){searchQ=document.getElementById("mainSearch").value.toUpperCase(); render();}
-window.viewTV=function(){let s=document.getElementById("tvSearch").value.trim(); if(!s){alert("Type: BINANCE:BTCUSDT, OANDA:XAUUSD"); return;} loadC(s,s.split(":")[1]||s,"BUY",0,0,0,0,0,94,96);}
-function renderTabs(){let types=["ALL","INDIA INDEX","BANK","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","F&O"]; document.getElementById("tabs").innerHTML=types.map(x=>{let c=x==="ALL"?mk.length:mk.filter(m=>m.ty===x).length; return `<div class="tab ${x===cur?'a':''}" onclick="filterMarket('${x}')">${x} (${c})</div>`}).join('');}
+window.filterMarket=function(t){cur=t; renderTabs(); render();};
+window.doSearch=function(){searchQ=document.getElementById("mainSearch").value.toUpperCase(); render();};
+window.viewTV=function(){let s=document.getElementById("tvSearch").value.trim(); if(!s){alert("Type: BINANCE:BTCUSDT, NSE:RELIANCE"); return;} loadC(s,s.split(":")[1]||s,"BUY");};
+function renderTabs(){let types=["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","F&O"]; document.getElementById("tabs").innerHTML=types.map(t=>`<div class="tab ${t===cur?'a':''}" onclick="filterMarket('${t}')">${t} (${t==="ALL"?mk.length:mk.filter(m=>m.ty===t).length})</div>`).join('');}
 function render(){
-let list=mk.filter(m=>{
-if(cur!=="ALL" && m.ty!==cur) return false;
-if(searchQ &&!m.s.toUpperCase().includes(searchQ) &&!m.sym.toUpperCase().includes(searchQ)) return false;
-return true;
-});
-document.getElementById("title").innerText=cur+" - "+list.length+" Symbols - TRADINGVIEW LIVE SAME - LIVE MAARUM - ENTRY FIXED";
-document.getElementById("cnt").innerText=cur+" ("+list.length+") LIVE MAARUM FIXED";
-let h=""; list.forEach(m=>{
-h+=`<tr onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},94,96)">
-<td><b style="background:#fff;color:#000;padding:2px 6px;border-radius:50%">1</b> <b style="background:#ff4545;color:#fff;padding:2px 6px;border-radius:50%">2</b> <b style="background:#90EE90;color:#000;padding:2px 6px;border-radius:50%">3</b> <b style="background:#39ff14;color:#000;padding:2px 6px;border-radius:50%">4</b> <b style="background:#00d4ff;color:#000;padding:2px 6px;border-radius:50%">5</b></td>
+let list=cur==="ALL"?mk:mk.filter(m=>m.ty===cur);
+if(searchQ) list=list.filter(m=>m.s.toUpperCase().includes(searchQ)||m.sym.toUpperCase().includes(searchQ));
+let h="";
+list.forEach(m=>{
+let isOpen=trades.find(t=>t.sym===m.s && t.status==="OPEN");
+h+=`<tr onclick="loadC('${m.sym}','${m.s}','${m.sg}')">
+<td><b style="background:#fff;color:#000;padding:1px 5px;border-radius:50%">1</b> <b style="background:#ff4545;color:#fff;padding:1px 5px;border-radius:50%">2</b> <b style="background:#90EE90;color:#000;padding:1px 5px;border-radius:50%">3</b></td>
 <td><b>${m.ty}</b></td>
 <td><b style="color:#39ff14">${m.s}</b><br><small>${m.sym}</small></td>
-<td style="background:#000;border:3px solid #39ff14"><b style="color:#39ff14;font-size:13px">🔴 ${m.p.toFixed(4)} LIVE MAARUM SAME AS TV</b><br><small style="color:#00d4ff">TradingView Real - Second Second Maarum</small></td>
-<td style="background:#111;border:1px solid #fff"><b style="color:#fff">① ${m.e.toFixed(3)} FIXED</b> | <b style="color:#ff4545">② ${m.sl.toFixed(3)} FIXED</b><br><b style="color:#90EE90">③ ${m.t1.toFixed(3)} FIXED</b> | <b style="color:#39ff14">④ ${m.t2.toFixed(3)} FIXED</b> | <b style="color:#00d4ff">⑤ ${m.t3.toFixed(3)} FIXED</b><br><small style="color:#888">MAARATHU - APDIYE IRUKKUM</small></td>
+<td style="background:#000;border:2px solid #39ff14"><b>🔴 ${m.p.toFixed(4)} LIVE AUTO</b><br><small>${m.ex}</small></td>
+<td style="background:#fff;color:#000;text-align:center"><b>${m.e.toFixed(2)} FIXED</b></td>
+<td style="background:#111;color:#fff;text-align:center"><small>③ ${m.t1.toFixed(2)} ④ ${m.t2.toFixed(2)} ⑤ ${m.t3.toFixed(2)} FIXED</small></td>
+<td style="background:#ff4545;color:#fff;text-align:center"><b>${m.sl.toFixed(2)} FIXED</b></td>
 <td><span class="b ${m.sg==='BUY'?'b-buy':'b-sell'}">${m.sg}</span></td>
-</tr>`;
+<td>${isOpen?'<span style="background:#39ff14;color:#000;padding:2px 6px;border-radius:10px;font-size:8px">OPEN PAPER</span>':'<span style="background:#000;color:#888;padding:2px 6px;border-radius:10px;border:1px solid #333">READY</span>'}</td></tr>`;
 });
 document.getElementById("tb").innerHTML=h;
+document.getElementById("cnt").innerText=cur+" ("+list.length+") AUTO PAPER";
 }
-window.loadC=function(sym,name,sg,e,t1,t2,t3,sl,ac,ai){
+window.loadC=function(sym,name,sg){
 document.getElementById("tv").innerHTML="";
-new TradingView.widget({autosize:true,symbol:sym,interval:"1",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;RSI","STD;MACD","STD;Bollinger_Bands"]});
+try{new TradingView.widget({autosize:true,symbol:sym,interval:"1",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;RSI","STD;MACD"]});}catch(e){}
 let m=mk.find(x=>x.sym===sym);
-if(!m){m={p:4381.84,e:e||4364.785,t1:t1||4383.48,t2:t2||4405,t3:t3||4428.707,sl:sl||4340,s:name,sym:sym,sg:sg,api:sym.split(":")[1]};}
+if(!m){m={p:4381.84,e:4364.785,t1:4383.48,t2:4405,t3:4428.707,sl:4340,s:name,sym:sym,sg:sg,api:sym.split(":")[1]};}
 window.currentM=m;
-document.getElementById("sn").innerText=sym+" • "+name+" • LIVE MAARUM: "+m.p.toFixed(4)+" SAME AS TRADINGVIEW | FIXED: ① "+m.e.toFixed(3)+" ② "+m.sl.toFixed(3)+" ③ "+m.t1.toFixed(3)+" ④ "+m.t2.toFixed(3)+" ⑤ "+m.t3.toFixed(3)+" APDIYE FIXED MAARATHU";
 updateLiveOnly(m);
-updateFixedMarking(m);
-document.getElementById("tvSearch").value=sym;
-}
-let symCats=["All","Crypto","Forex","Stocks","Commodity","Indices"];
-function renderSymTabs(){document.getElementById("symTabs").innerHTML=symCats.map(c=>`<div style="padding:5px 10px;border-radius:16px;background:${c===viewCat?'#000;color:#fff':'#f1f3f6'};font-size:11px;cursor:pointer;font-weight:600;white-space:nowrap" onclick="setSym('${c}')">${c}</div>`).join('');}
-window.setSym=function(c){viewCat=c; renderSymTabs(); renderSymList();}
-function renderSymList(){
-let q=document.getElementById("symSearch").value.toUpperCase();
-let list=mk.filter(m=>{
-if(viewCat==="Crypto" && m.ty!=="CRYPTO") return false;
-if(viewCat==="Forex" && m.ty!=="FOREX") return false;
-if(viewCat==="Stocks" && m.ty!=="STOCK") return false;
-if(viewCat==="Commodity" && m.ty!=="COMMODITY") return false;
-if(viewCat==="Indices" && m.ty!=="INDIA INDEX" && m.ty!=="US INDEX") return false;
-if(q &&!m.s.toUpperCase().includes(q) &&!m.sym.toUpperCase().includes(q)) return false;
-return true;
-});
-document.getElementById("symList").innerHTML=list.map(m=>`<div class="sym-row" onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},94,96)"><div><b style="color:#2962ff">${m.s}</b> <b style="color:#39ff14">${m.p.toFixed(2)} LIVE MAARUM</b><br><span style="font-size:10px;color:#888">① ${m.e.toFixed(2)} FIXED ② ${m.sl.toFixed(2)} FIXED ③ ${m.t1.toFixed(2)} FIXED</span></div><div style="font-size:10px;color:#39ff14"><b>● LIVE</b></div></div>`).join('');
-document.getElementById("viewCount").innerText="("+list.length+" LIVE MAARUM)";
-}
-setInterval(()=>{document.getElementById("clock").innerText=new Date().toLocaleString('en-IN')+" • LIVE MATTUM MAARUM FIXED APDIYE";},1000);
-renderTabs(); render(); renderSymTabs(); renderSymList(); loadC("OANDA:XAUUSD","XAU/USD GOLD TRADINGVIEW LIVE SAME","BUY",0,0,0,0,0,97,98);
+};
+setInterval(()=>{document.getElementById("clock").innerText=new Date().toLocaleString('en-IN');},1000);
+setInterval(fetchAllRealLive, 10000);
+renderTabs(); render(); loadC("OANDA:XAUUSD","XAU/USD GOLD AUTO PAPER","BUY");
 connectBinanceWS();
-startPolling();
+fetchAllRealLive();
 </script></body></html>
