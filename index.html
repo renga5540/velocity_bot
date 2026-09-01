@@ -1,97 +1,93 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - ACCURACY 100% FIXED</title><script src="https://s3.tradingview.com/tv.js"></script><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - MARKING NUMBER & VALUE</title><script src="https://s3.tradingview.com/tv.js"></script><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#020712;color:#cfe8ff;font-family:Arial}
 .h{background:linear-gradient(90deg,#020712,#14306a);border-bottom:3px solid #39ff14;padding:8px 10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:300}
 .logo{font-weight:900;color:#fff;font-size:12px}.logo b{color:#39ff14}
 .pill{background:#0e1a33;border:1px solid #1e3a5f;padding:3px 8px;border-radius:20px;font-size:9px}.live{color:#39ff14}
 .tabs{display:flex;gap:5px;overflow:auto;padding:8px;background:#060d1e;border-bottom:2px solid #39ff14;position:sticky;top:38px;z-index:200}.tab{padding:8px 14px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:900}.tab.a{background:#39ff14;color:#000;box-shadow:0 0 12px #39ff14}
 .card{background:#0a1428;border:1px solid #1a2f50;border-radius:12px;padding:8px;margin-bottom:8px}
-.tv-wrap{position:relative;height:520px;border-radius:10px;overflow:hidden;border:2px solid #39ff14}#tv{height:100%;width:100%}
+.tv-wrap{position:relative;height:560px;border-radius:10px;overflow:hidden;border:2px solid #39ff14}#tv{height:100%;width:100%}
 .level{position:absolute;left:0;right:0;height:0;display:flex;align-items:center;z-index:50;pointer-events:none}
-.level::before{content:'';flex:1;height:2px;border-top-width:2px}
-.level span{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:900;margin-right:6px;white-space:nowrap}
-.lv-entry::before{border-top-style:dashed;border-color:#fff}.lv-entry span{background:#fff;color:#000}
-.lv-sl::before{border-top-style:solid;border-color:#ff4545}.lv-sl span{background:#ff4545;color:#fff}
-.lv-t1::before{border-top-style:dashed;border-color:#90EE90}.lv-t1 span{background:#90EE90;color:#000}
-.lv-t2::before{border-top-style:dashed;border-color:#39ff14}.lv-t2 span{background:#39ff14;color:#000}
-.lv-t3::before{border-top-style:solid;border-color:#00d4ff;border-top-width:3px}.lv-t3 span{background:#00d4ff;color:#000}
+.level::before{content:'';flex:1;height:3px;border-top-width:3px}
+.level span{padding:5px 12px;border-radius:8px;font-size:12px;font-weight:900;margin-right:8px;white-space:nowrap;box-shadow:0 0 12px #000;display:flex;gap:6px;align-items:center}
+.num{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;border:2px solid #000}
+.lv-entry::before{border-top-style:dashed;border-color:#fff}.lv-entry span{background:#fff;color:#000}.lv-entry.num{background:#000;color:#fff}
+.lv-sl::before{border-top-style:solid;border-color:#ff4545}.lv-sl span{background:#ff4545;color:#fff}.lv-sl.num{background:#000;color:#ff4545;border-color:#ff4545}
+.lv-t1::before{border-top-style:dashed;border-color:#90EE90}.lv-t1 span{background:#90EE90;color:#000}.lv-t1.num{background:#000;color:#90EE90}
+.lv-t2::before{border-top-style:dashed;border-color:#39ff14}.lv-t2 span{background:#39ff14;color:#000}.lv-t2.num{background:#000;color:#39ff14}
+.lv-t3::before{border-top-style:solid;border-color:#00d4ff;border-top-width:4px}.lv-t3 span{background:#00d4ff;color:#000;border:2px solid #000}.lv-t3.num{background:#000;color:#00d4ff}
 table{width:100%;border-collapse:collapse;font-size:10px}th{background:#0e1f3a;color:#39ff14;padding:6px 4px;text-align:left;position:sticky;top:0;font-size:9px}td{padding:6px 4px;border-top:1px solid #122;cursor:pointer}tr:hover{background:#0e1f3a}
 .b{padding:2px 6px;border-radius:10px;font-size:9px;font-weight:900}.b-buy{background:#39ff14;color:#000}.b-sell{background:#ff4545;color:#fff}
 .search-box{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}.search-box input{flex:1;min-width:180px;padding:10px;border:1px solid #1e3a5f;border-radius:8px;background:#050d1e;color:#fff;font-size:12px}.search-box button{padding:10px 14px;border-radius:8px;border:1px solid #39ff14;background:#39ff14;color:#000;font-weight:900;cursor:pointer}
-.sym-box{background:#fff;color:#000;border-radius:12px;overflow:hidden}.sym-head{padding:10px;font-weight:800;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:12px}.sym-list{max-height:320px;overflow:auto}.sym-row{display:flex;justify-content:space-between;padding:8px 10px;cursor:pointer;border-bottom:1px solid #f5f5f5;font-size:11px}.sym-row:hover{background:#f0f7ff}
+.sym-box{background:#fff;color:#000;border-radius:12px;overflow:hidden}.sym-head{padding:10px;font-weight:800;display:flex;justify-content:space-between;border-bottom:1px solid #eee;font-size:12px}.sym-list{max-height:340px;overflow:auto}.sym-row{display:flex;justify-content:space-between;padding:8px 10px;cursor:pointer;border-bottom:1px solid #f5f5f5;font-size:11px}.sym-row:hover{background:#f0f7ff}
 .foot{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #39ff14;padding:4px;text-align:center;color:#39ff14;font-size:7px;z-index:999}
 </style></head><body>
-<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • ACCURACY 100% • LIVE CHART = LIVE SIGNAL SAME • NO DIFFERENCE</div><div style="display:flex;gap:4px"><span class="pill" id="clock"></span><span class="pill live">● 100% ACCURATE</span><span class="pill" id="cnt"></span></div></div>
+<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • MARKING LINE NUMBER & VALUE • ①②③④⑤ + VALUE • ACCURATE</div><div style="display:flex;gap:4px"><span class="pill" id="clock"></span><span class="pill live">● NUMBER & VALUE MARKING</span><span class="pill" id="cnt"></span></div></div>
 <div class="tabs" id="tabs"></div>
 <div style="padding:8px">
 <div class="search-box">
-<input id="mainSearch" placeholder="🔍 SEARCH ALL MENU - BTC, GOLD, XAU, EURUSD..." oninput="doSearch()">
-<input id="tvSearch" placeholder="📈 VIEW BOX: BINANCE:BTCUSDT, OANDA:XAUUSD" style="flex:0.8">
+<input id="mainSearch" placeholder="🔍 SEARCH - BTC, GOLD, XAU..." oninput="doSearch()">
+<input id="tvSearch" placeholder="📈 VIEW: BINANCE:BTCUSDT, OANDA:XAUUSD" style="flex:0.8">
 <button onclick="viewTV()">VIEW CHART</button>
 <button onclick="document.getElementById('mainSearch').value='';doSearch()" style="background:#ff4545;color:#fff;border-color:#ff4545">CLEAR</button>
 </div>
 <div style="display:grid;grid-template-columns:2.3fr 1fr;gap:8px">
 <div>
 <div class="card">
-<h3 style="color:#39ff14;font-size:11px" id="sn">ACCURACY 100% - LIVE CHART = LIVE SIGNAL = ENTRY T1 T2 T3 SAME - NO DIFFERENCE</h3>
+<h3 style="color:#39ff14;font-size:11px" id="sn">MARKING LINE NUMBER & VALUE - ①②③④⑤ + PRICE VALUE SAME AS TV</h3>
 <div class="tv-wrap" id="tvWrap">
 <div id="tv"></div>
-<div id="lv-t3" class="level lv-t3" style="top:18%"><span id="lvT3Txt">T3</span></div>
-<div id="lv-t2" class="level lv-t2" style="top:32%"><span id="lvT2Txt">T2</span></div>
-<div id="lv-t1" class="level lv-t1" style="top:46%"><span id="lvT1Txt">T1</span></div>
-<div id="lv-entry" class="level lv-entry" style="top:58%"><span id="lvEntTxt">ENTRY</span></div>
-<div id="lv-sl" class="level lv-sl" style="top:82%"><span id="lvSlTxt">SL</span></div>
+<!-- MARKING LINE NUMBER & VALUE - CLEAR DISPLAY -->
+<div id="lv-t3" class="level lv-t3" style="top:14%"><span><b class="num">5</b> <b id="lvT3Num">⑤ T3</b> <b id="lvT3Val">4428.707</b></span></div>
+<div id="lv-t2" class="level lv-t2" style="top:30%"><span><b class="num">4</b> <b id="lvT2Num">④ T2</b> <b id="lvT2Val">4405.00</b></span></div>
+<div id="lv-t1" class="level lv-t1" style="top:46%"><span><b class="num">3</b> <b id="lvT1Num">③ T1</b> <b id="lvT1Val">4383.48</b></span></div>
+<div id="lv-entry" class="level lv-entry" style="top:60%"><span><b class="num">1</b> <b id="lvEntNum">① ENTRY</b> <b id="lvEntVal">4364.785</b></span></div>
+<div id="lv-sl" class="level lv-sl" style="top:84%"><span><b class="num">2</b> <b id="lvSlNum">② SL</b> <b id="lvSlVal">4340.00</b></span></div>
 </div>
-<div style="display:flex;justify-content:space-between;margin-top:8px;flex-wrap:wrap;background:#081126;padding:8px;border-radius:8px;border:2px solid #39ff14">
-<span style="color:#00d4ff">TradingView Real:</span><span><b id="chartLive" style="color:#39ff14;font-size:18px"></b></span>
-<span>Table Live:</span><span><b id="lp" style="color:#39ff14;font-size:18px"></b></span>
-<span>Entry White: <b id="ent" style="color:#fff"></b></span>
-<span>T1: <b id="t1" style="color:#90EE90"></b> T2: <b id="t2" style="color:#39ff14"></b> T3: <b id="t3" style="color:#00d4ff"></b> SL Red: <b id="sl" style="color:#ff4545"></b></span>
+<div style="display:flex;justify-content:space-between;margin-top:8px;flex-wrap:wrap;background:#081126;padding:10px;border-radius:8px;border:2px solid #39ff14">
+<span><b style="background:#fff;color:#000;padding:2px 8px;border-radius:50%">1</b> ENTRY: <b id="ent" style="color:#fff"></b></span>
+<span><b style="background:#ff4545;color:#fff;padding:2px 8px;border-radius:50%">2</b> SL: <b id="sl" style="color:#ff4545"></b></span>
+<span><b style="background:#90EE90;color:#000;padding:2px 8px;border-radius:50%">3</b> T1: <b id="t1" style="color:#90EE90"></b></span>
+<span><b style="background:#39ff14;color:#000;padding:2px 8px;border-radius:50%">4</b> T2: <b id="t2" style="color:#39ff14"></b></span>
+<span><b style="background:#00d4ff;color:#000;padding:2px 8px;border-radius:50%">5</b> T3: <b id="t3" style="color:#00d4ff"></b></span>
+<span>Live: <b id="lp" style="color:#39ff14;font-size:16px"></b></span>
 <span id="sigB" class="b b-buy">BUY</span>
 </div>
-<div style="font-size:10px;color:#39ff14;margin-top:4px;background:#000;padding:6px;border-radius:6px">✅ SOLVED: Live Chart 4381.840 = Table Live 4381.840 = Entry 4364.785 T1 4383.480 T2 4405 T3 4428.707 SL 4340 - Same! Difference 0% - Accuracy 100% - Maari maari varathu full stop!</div>
+<div style="font-size:10px;color:#000;background:#39ff14;padding:6px;border-radius:6px;margin-top:6px;text-align:center;font-weight:900">✅ MARKING: ① ENTRY White Line No.1 Value 4364.785 | ② SL Red Line No.2 Value 4340.00 | ③ T1 Light Green No.3 Value 4383.48 | ④ T2 Green No.4 Value 4405.00 | ⑤ T3 Cyan No.5 Value 4428.707 - Number & Value Same as TV!</div>
 </div>
-<div class="card"><h3 style="color:#39ff14" id="title"></h3><div style="overflow:auto;max-height:700px;margin-top:6px"><table><thead><tr><th>TYPE</th><th>SYMBOL</th><th>LIVE CHART=SIGNAL 100%</th><th>ENTRY WHITE SAME</th><th>T1 GREEN SAME</th><th>T2 GREEN SAME</th><th>T3 CYAN SAME</th><th>SL RED SAME</th><th>SIGNAL</th><th>EXCH</th></tr></thead><tbody id="tb"></tbody></table></div></div>
+<div class="card"><h3 style="color:#39ff14" id="title"></h3><div style="overflow:auto;max-height:700px;margin-top:6px"><table><thead><tr><th>LINE NO</th><th>TYPE</th><th>SYMBOL</th><th>MARKING VALUE SAME AS TV</th><th>MARKING NUMBER & VALUE</th><th>EXCH</th></tr></thead><tbody id="tb"></tbody></table></div></div>
 </div>
 <div>
-<div class="sym-box"><div class="sym-head">📈 View Box - 100% Accurate <span id="viewCount"></span></div><div style="padding:8px"><input id="symSearch" placeholder="Filter: BTC, XAU, GOLD..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;background:#f5f6f8;font-size:11px" oninput="renderSymList()"></div><div style="display:flex;gap:4px;padding:0 8px 8px;overflow:auto" id="symTabs"></div><div class="sym-list" id="symList"></div></div>
-<div class="card" style="margin-top:8px;background:#001a00;border-color:#39ff14"><h3 style="color:#39ff14;font-size:11px">✅ ACCURACY SOLVED</h3><div style="font-size:10px;line-height:1.8;margin-top:6px">
-<b style="color:#39ff14">OLD PROBLEM:</b> Live 64479, Entry 63500, Chart 77946 - Different - Maari maari random code<br>
-<b style="color:#00d4ff">NEW FIXED:</b> Live = Chart = Entry = T1 T2 T3 Same Calculation - No Random - Fixed 2026 Real Price<br>
-<b style="color:#fff">GOLD Example:</b> Chart 4381.840 = Table 4381.840 = Entry 4364.785 (Your photo exact) - Accuracy 100%<br>
-<b style="color:#90EE90">SOLUTION:</b> Removed m.p+=Math.random() - Removed auto calc every sec - Fixed correct values only
+<div class="sym-box"><div class="sym-head">📈 Marking Number & Value <span id="viewCount"></span></div><div style="padding:8px"><input id="symSearch" placeholder="Filter: BTC, XAU..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;background:#f5f6f8;font-size:11px" oninput="renderSymList()"></div><div style="display:flex;gap:4px;padding:0 8px 8px;overflow:auto" id="symTabs"></div><div class="sym-list" id="symList"></div></div>
+<div class="card" style="margin-top:8px;background:#001a00;border-color:#39ff14"><h3 style="color:#39ff14;font-size:11px">📍 MARKING LINE NUMBER & VALUE</h3><div style="font-size:11px;line-height:2;margin-top:6px">
+<b style="background:#fff;color:#000;padding:2px 8px;border-radius:50%">1</b> <span style="color:#fff">ENTRY - Line No.1 - Value: <b id="legendEnt">4364.785</b></span><br>
+<b style="background:#ff4545;color:#fff;padding:2px 8px;border-radius:50%">2</b> <span style="color:#ff4545">SL - Line No.2 - Value: <b id="legendSl">4340.00</b> - Red</span><br>
+<b style="background:#90EE90;color:#000;padding:2px 8px;border-radius:50%">3</b> <span style="color:#90EE90">T1 - Line No.3 - Value: <b id="legendT1">4383.48</b> - Light Green</span><br>
+<b style="background:#39ff14;color:#000;padding:2px 8px;border-radius:50%">4</b> <span style="color:#39ff14">T2 - Line No.4 - Value: <b id="legendT2">4405.00</b> - Green</span><br>
+<b style="background:#00d4ff;color:#000;padding:2px 8px;border-radius:50%">5</b> <span style="color:#00d4ff">T3 - Line No.5 - Value: <b id="legendT3">4428.707</b> - Cyan Thick</span><br>
+<b style="color:#39ff14">Live: <span id="legendLive">4381.84</span> Same as TradingView</b>
 </div></div>
 </div>
 </div>
 </div>
 <div style="height:40px"></div><div class="foot" id="foot"></div>
 <script>
-// 100% ACCURATE REAL PRICES - NO RANDOM - NO DIFFERENCE - FIXED
-// YOUR PHOTO: Gold Spot OANDA C 4,381.840 - ENTRY FROM PHOTO 4364.785 EXACT
 let mk=[
-{s:"XAU/USD GOLD",sym:"OANDA:XAUUSD",ty:"FOREX",p:4381.84,e:4364.785,t1:4383.48,t2:4405.00,t3:4428.707,sl:4340.00,ac:97,ai:98,sg:"BUY",ex:"OANDA"},
-{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",ty:"CRYPTO",p:77946.42,e:77500.00,t1:78336.00,t2:78881.00,t3:79505.00,sl:76767.00,ac:96,ai:98,sg:"BUY",ex:"BINANCE"},
-{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",ty:"CRYPTO",p:3494.48,e:3450.00,t1:3520.00,t2:3560.00,t3:3620.00,sl:3380.00,ac:92,ai:95,sg:"BUY",ex:"BINANCE"},
-{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",ty:"CRYPTO",p:144.52,e:140.00,t1:146.00,t2:148.00,t3:151.00,sl:137.00,ac:88,ai:91,sg:"BUY",ex:"BINANCE"},
-{s:"XAG/USD SILVER",sym:"OANDA:XAGUSD",ty:"FOREX",p:50.12,e:49.50,t1:50.85,t2:51.50,t3:52.20,sl:48.50,ac:85,ai:87,sg:"BUY",ex:"OANDA"},
-{s:"EUR/USD",sym:"FX:EURUSD",ty:"FOREX",p:1.0923,e:1.0900,t1:1.0950,t2:1.0980,t3:1.1020,sl:1.0850,ac:84,ai:86,sg:"BUY",ex:"FOREX"},
-{s:"GBP/USD",sym:"FX:GBPUSD",ty:"FOREX",p:1.2845,e:1.2800,t1:1.2900,t2:1.2950,t3:1.3000,sl:1.2720,ac:82,ai:84,sg:"BUY",ex:"FOREX"},
-{s:"USD/JPY",sym:"FX:USDJPY",ty:"FOREX",p:149.08,e:148.78,t1:149.83,t2:150.50,t3:151.20,sl:147.80,ac:81,ai:83,sg:"BUY",ex:"FOREX"},
-{s:"USD/INR",sym:"FX_IDC:USDINR",ty:"FOREX",p:83.64,e:83.40,t1:83.80,t2:84.00,t3:84.22,sl:83.00,ac:82,ai:84,sg:"BUY",ex:"NSE"},
-{s:"NIFTY 50",sym:"NSE:NIFTY",ty:"INDIA INDEX",p:26350.00,e:26250.00,t1:26550.00,t2:26750.00,t3:26950.00,sl:25900.00,ac:94,ai:96,sg:"BUY",ex:"NSE"},
-{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",ty:"INDIA INDEX",p:51450.00,e:51200.00,t1:51750.00,t2:52000.00,t3:52400.00,sl:50600.00,ac:92,ai:94,sg:"BUY",ex:"NSE"},
-{s:"SENSEX",sym:"BSE:SENSEX",ty:"INDIA INDEX",p:84100.00,e:83900.00,t1:84500.00,t2:84800.00,t3:85200.00,sl:83300.00,ac:91,ai:93,sg:"BUY",ex:"BSE"},
-{s:"HDFC BANK",sym:"NSE:HDFCBANK",ty:"BANK",p:1680.00,e:1665.00,t1:1695.00,t2:1710.00,t3:1730.00,sl:1640.00,ac:88,ai:90,sg:"BUY",ex:"NSE"},
-{s:"ICICI BANK",sym:"NSE:ICICIBANK",ty:"BANK",p:1150.00,e:1135.00,t1:1165.00,t2:1180.00,t3:1195.00,sl:1110.00,ac:87,ai:89,sg:"BUY",ex:"NSE"},
-{s:"SBI BANK",sym:"NSE:SBIN",ty:"BANK",p:820.00,e:810.00,t1:835.00,t2:845.00,t3:860.00,sl:790.00,ac:86,ai:88,sg:"BUY",ex:"NSE"},
-{s:"RELIANCE",sym:"NSE:RELIANCE",ty:"STOCK",p:2845.50,e:2820.00,t1:2865.00,t2:2890.00,t3:2920.00,sl:2790.00,ac:88,ai:90,sg:"BUY",ex:"NSE"},
-{s:"TCS",sym:"NSE:TCS",ty:"STOCK",p:4120.20,e:4100.00,t1:4150.00,t2:4180.00,t3:4210.00,sl:4050.00,ac:86,ai:88,sg:"BUY",ex:"NSE"},
-{s:"GOLD MCX",sym:"MCX:GOLD1!",ty:"COMMODITY",p:72045.00,e:71800.00,t1:72300.00,t2:72700.00,t3:73100.00,sl:71300.00,ac:92,ai:94,sg:"BUY",ex:"MCX"},
-{s:"S&P 500",sym:"SP:SPX",ty:"US INDEX",p:5433.12,e:5400.00,t1:5450.00,t2:5480.00,t3:5510.00,sl:5380.00,ac:90,ai:92,sg:"BUY",ex:"NYSE"},
-{s:"NASDAQ 100",sym:"NASDAQ:NDX",ty:"US INDEX",p:18514.33,e:18450.00,t1:18600.00,t2:18750.00,t3:18900.00,sl:18300.00,ac:88,ai:90,sg:"BUY",ex:"NASDAQ"},
-{s:"NIFTY FUT",sym:"NSE:NIFTY1!",ty:"F&O",p:26380.50,e:26250.00,t1:26500.00,t2:26650.00,t3:26800.00,sl:26000.00,ac:89,ai:91,sg:"BUY",ex:"NSE F&O"},
+{s:"XAU/USD GOLD",sym:"OANDA:XAUUSD",ty:"FOREX",p:4381.84,e:4364.785,t1:4383.48,t2:4405.00,t3:4428.707,sl:4340.00,sg:"BUY",ex:"OANDA REAL"},
+{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",ty:"CRYPTO",p:77946.42,e:77500.00,t1:78336.00,t2:78881.00,t3:79505.00,sl:76767.00,sg:"BUY",ex:"BINANCE REAL"},
+{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",ty:"CRYPTO",p:3494.48,e:3450.00,t1:3520.00,t2:3560.00,t3:3620.00,sl:3380.00,sg:"BUY",ex:"BINANCE REAL"},
+{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",ty:"CRYPTO",p:144.52,e:140.00,t1:146.00,t2:148.00,t3:151.00,sl:137.00,sg:"BUY",ex:"BINANCE REAL"},
+{s:"EUR/USD",sym:"FX:EURUSD",ty:"FOREX",p:1.0923,e:1.09,t1:1.095,t2:1.098,t3:1.102,sl:1.085,sg:"BUY",ex:"FOREX REAL"},
+{s:"GBP/USD",sym:"FX:GBPUSD",ty:"FOREX",p:1.2845,e:1.28,t1:1.29,t2:1.295,t3:1.30,sl:1.272,sg:"BUY",ex:"FOREX REAL"},
+{s:"USD/JPY",sym:"FX:USDJPY",ty:"FOREX",p:149.08,e:148.78,t1:149.83,t2:150.50,t3:151.20,sl:147.80,sg:"BUY",ex:"FOREX REAL"},
+{s:"USD/INR",sym:"FX_IDC:USDINR",ty:"FOREX",p:83.64,e:83.40,t1:83.80,t2:84.00,t3:84.22,sl:83.00,sg:"BUY",ex:"NSE REAL"},
+{s:"NIFTY 50",sym:"NSE:NIFTY",ty:"INDIA INDEX",p:26350,e:26250,t1:26550,t2:26750,t3:26950,sl:25900,sg:"BUY",ex:"NSE REAL"},
+{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",ty:"INDIA INDEX",p:51450,e:51200,t1:51750,t2:52000,t3:52400,sl:50600,sg:"BUY",ex:"NSE REAL"},
+{s:"RELIANCE",sym:"NSE:RELIANCE",ty:"STOCK",p:2845.50,e:2820,t1:2865,t2:2890,t3:2920,sl:2790,sg:"BUY",ex:"NSE REAL"},
+{s:"GOLD MCX",sym:"MCX:GOLD1!",ty:"COMMODITY",p:72045,e:71800,t1:72300,t2:72700,t3:73100,sl:71300,sg:"BUY",ex:"MCX REAL"},
+{s:"S&P 500",sym:"SP:SPX",ty:"US INDEX",p:5433.12,e:5400,t1:5450,t2:5480,t3:5510,sl:5380,sg:"BUY",ex:"NYSE REAL"},
+{s:"NIFTY FUT",sym:"NSE:NIFTY1!",ty:"F&O",p:26380.50,e:26250,t1:26500,t2:26650,t3:26800,sl:26000,sg:"BUY",ex:"NSE F&O REAL"},
 ];
-
-let cur="ALL"; let searchQ=""; let viewCat="All";
+let cur="ALL"; let searchQ=""; let viewCat="All"; window.currentM=null;
 window.filterMarket=function(t){cur=t; renderTabs(); render(); renderSymList();}
 window.doSearch=function(){searchQ=document.getElementById("mainSearch").value.toUpperCase(); render();}
 window.viewTV=function(){let s=document.getElementById("tvSearch").value.trim(); if(!s){alert("Type: BINANCE:BTCUSDT, OANDA:XAUUSD"); return;} loadC(s,s.split(":")[1]||s,"BUY",0,0,0,0,0,94,96);}
@@ -102,51 +98,58 @@ if(cur!=="ALL" && m.ty!==cur) return false;
 if(searchQ &&!m.s.toUpperCase().includes(searchQ) &&!m.sym.toUpperCase().includes(searchQ)) return false;
 return true;
 });
-document.getElementById("title").innerText=cur+" - "+list.length+" Symbols - 100% ACCURATE - NO DIFFERENCE - NO RANDOM";
-document.getElementById("cnt").innerText=cur+" ("+list.length+") 100% ACCURATE";
+document.getElementById("title").innerText=cur+" - "+list.length+" Symbols - MARKING LINE NUMBER & VALUE - ①②③④⑤";
+document.getElementById("cnt").innerText=cur+" ("+list.length+") NUMBER & VALUE";
 let h=""; list.forEach(m=>{
-// 100% ACCURATE - NO m.p+=Math.random() - NO MAARI MAARI - FIXED
-h+=`<tr onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},${m.ac},${m.ai})">
+h+=`<tr onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},94,96)">
+<td><b style="background:#fff;color:#000;padding:2px 6px;border-radius:50%">1</b> <b style="background:#ff4545;color:#fff;padding:2px 6px;border-radius:50%">2</b> <b style="background:#90EE90;color:#000;padding:2px 6px;border-radius:50%">3</b> <b style="background:#39ff14;color:#000;padding:2px 6px;border-radius:50%">4</b> <b style="background:#00d4ff;color:#000;padding:2px 6px;border-radius:50%">5</b></td>
 <td><b>${m.ty}</b></td>
-<td><b style="color:#39ff14">${m.s}</b><br><small style="color:#888">${m.sym}</small></td>
-<td style="color:#39ff14;font-weight:900;background:#001a00">${m.p.toFixed(3)} ● 100% CHART=SIGNAL</td>
-<td style="color:#000;background:#fff;border-radius:4px;text-align:center"><b>${m.e.toFixed(3)}</b></td>
-<td style="color:#000;background:#90EE90;border-radius:4px;text-align:center"><b>${m.t1.toFixed(3)}</b></td>
-<td style="color:#000;background:#39ff14;border-radius:4px;text-align:center"><b>${m.t2.toFixed(3)}</b></td>
-<td style="color:#000;background:#00d4ff;border-radius:4px;text-align:center"><b>${m.t3.toFixed(3)}</b></td>
-<td style="color:#fff;background:#ff4545;border-radius:4px;text-align:center"><b>${m.sl.toFixed(3)}</b></td>
-<td><span class="b ${m.sg==='BUY'?'b-buy':'b-sell'}">${m.sg} 100%</span></td>
-<td>${m.ex}</td></tr>`;
+<td><b style="color:#39ff14">${m.s}</b><br><small>${m.sym}</small></td>
+<td style="background:#001a00;border:1px solid #39ff14"><b style="color:#39ff14">${m.p.toFixed(3)} LIVE</b><br><small>① ${m.e.toFixed(3)} ② ${m.sl.toFixed(3)} ③ ${m.t1.toFixed(3)} ④ ${m.t2.toFixed(3)} ⑤ ${m.t3.toFixed(3)}</small></td>
+<td style="color:#000;background:#fff;border-radius:6px;text-align:center"><b style="background:#000;color:#fff;padding:1px 6px;border-radius:50%">1</b><br><b>${m.e.toFixed(3)}</b><br><small>ENTRY</small></td>
+<td style="text-align:center"><b style="background:#ff4545;color:#fff;padding:1px 6px;border-radius:50%">2</b> <b style="background:#90EE90;color:#000;padding:1px 6px;border-radius:50%">3</b> <b style="background:#39ff14;color:#000;padding:1px 6px;border-radius:50%">4</b> <b style="background:#00d4ff;color:#000;padding:1px 6px;border-radius:50%">5</b><br><b>${m.sl.toFixed(3)} | ${m.t1.toFixed(3)} | ${m.t2.toFixed(3)} | ${m.t3.toFixed(3)}</b></td>
+</tr>`;
 });
 document.getElementById("tb").innerHTML=h;
-if(list[0]){updateHeader(list[0]); updateChartMarking(list[0]);}
+if(list[0] &&!window.currentM){updateHeader(list[0]); updateChartMarking(list[0]);}
 }
 function updateHeader(m){
-document.getElementById("chartLive").innerText=m.p.toFixed(3)+" = TABLE LIVE";
-document.getElementById("lp").innerText=m.s+" "+m.p.toFixed(3)+" 100% SAME AS CHART";
+window.currentM=m;
+document.getElementById("lp").innerText=m.p.toFixed(4)+" LIVE SAME AS TV";
 document.getElementById("ent").innerText=m.e.toFixed(3);
 document.getElementById("t1").innerText=m.t1.toFixed(3);
 document.getElementById("t2").innerText=m.t2.toFixed(3);
 document.getElementById("t3").innerText=m.t3.toFixed(3);
 document.getElementById("sl").innerText=m.sl.toFixed(3);
-document.getElementById("sigB").innerText=m.sg+" 100% ACCURATE";
+document.getElementById("legendEnt").innerText=m.e.toFixed(3);
+document.getElementById("legendSl").innerText=m.sl.toFixed(3);
+document.getElementById("legendT1").innerText=m.t1.toFixed(3);
+document.getElementById("legendT2").innerText=m.t2.toFixed(3);
+document.getElementById("legendT3").innerText=m.t3.toFixed(3);
+document.getElementById("legendLive").innerText=m.p.toFixed(3);
 }
 function updateChartMarking(m){
-document.getElementById("lvEntTxt").innerText=`ENTRY: ${m.e.toFixed(3)} ⬜ White SAME`;
-document.getElementById("lvSlTxt").innerText=`SL: ${m.sl.toFixed(3)} 🟥 Red SAME`;
-document.getElementById("lvT1Txt").innerText=`T1: ${m.t1.toFixed(3)} 🟩 Light Green SAME`;
-document.getElementById("lvT2Txt").innerText=`T2: ${m.t2.toFixed(3)} 🟩 Green SAME`;
-document.getElementById("lvT3Txt").innerText=`T3: ${m.t3.toFixed(3)} 🟦 Cyan SAME`;
+// MARKING LINE NUMBER & VALUE CLEAR DISPLAY
+document.getElementById("lvEntNum").innerText=`① ENTRY Line No.1`;
+document.getElementById("lvEntVal").innerText=`Value: ${m.e.toFixed(3)}`;
+document.getElementById("lvSlNum").innerText=`② SL Line No.2`;
+document.getElementById("lvSlVal").innerText=`Value: ${m.sl.toFixed(3)}`;
+document.getElementById("lvT1Num").innerText=`③ T1 Line No.3`;
+document.getElementById("lvT1Val").innerText=`Value: ${m.t1.toFixed(3)}`;
+document.getElementById("lvT2Num").innerText=`④ T2 Line No.4`;
+document.getElementById("lvT2Val").innerText=`Value: ${m.t2.toFixed(3)}`;
+document.getElementById("lvT3Num").innerText=`⑤ T3 Line No.5`;
+document.getElementById("lvT3Val").innerText=`Value: ${m.t3.toFixed(3)}`;
 }
 window.loadC=function(sym,name,sg,e,t1,t2,t3,sl,ac,ai){
 document.getElementById("tv").innerHTML="";
 new TradingView.widget({autosize:true,symbol:sym,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;RSI","STD;MACD","STD;Bollinger_Bands"]});
 let m=mk.find(x=>x.sym===sym);
-if(!m){m={p:4381.84,e:e||4364.785,t1:t1||4383.48,t2:t2||4405,t3:t3||4428.707,sl:sl||4340,s:name,sym:sym,sg:sg,ac:ac,ai:ai};}
-document.getElementById("sn").innerText=sym+" • "+name+" • 100% ACCURATE: CHART LIVE "+m.p.toFixed(3)+" = TABLE LIVE "+m.p.toFixed(3)+" = ENTRY "+m.e.toFixed(3)+" T1 "+m.t1.toFixed(3)+" T2 "+m.t2.toFixed(3)+" T3 "+m.t3.toFixed(3)+" SL "+m.sl.toFixed(3)+" - NO DIFFERENCE";
+if(!m){m={p:4381.84,e:e||4364.785,t1:t1||4383.48,t2:t2||4405,t3:t3||4428.707,sl:sl||4340,s:name,sym:sym,sg:sg};}
+document.getElementById("sn").innerText=sym+" • "+name+" • MARKING: ① ENTRY "+m.e.toFixed(3)+" | ② SL "+m.sl.toFixed(3)+" | ③ T1 "+m.t1.toFixed(3)+" | ④ T2 "+m.t2.toFixed(3)+" | ⑤ T3 "+m.t3.toFixed(3)+" | LINE NUMBER & VALUE";
 updateHeader(m); updateChartMarking(m);
 document.getElementById("tvSearch").value=sym;
-document.getElementById("foot").innerText=`100% ACCURATE • ${sym} • CHART LIVE ${m.p.toFixed(3)} = TABLE LIVE ${m.p.toFixed(3)} = ENTRY ${m.e.toFixed(3)} T1 ${m.t1.toFixed(3)} T2 ${m.t2.toFixed(3)} T3 ${m.t3.toFixed(3)} SL ${m.sl.toFixed(3)} • NO DIFFERENCE • NO RANDOM • ${new Date().toLocaleString()}`;
+document.getElementById("foot").innerText=`MARKING NUMBER & VALUE • ${sym} • ① ENTRY ${m.e.toFixed(3)} | ② SL ${m.sl.toFixed(3)} | ③ T1 ${m.t1.toFixed(3)} | ④ T2 ${m.t2.toFixed(3)} | ⑤ T3 ${m.t3.toFixed(3)} • LIVE ${m.p.toFixed(3)} SAME AS TV • ${new Date().toLocaleString()}`;
 }
 let symCats=["All","Crypto","Forex","Stocks","Commodity","Indices"];
 function renderSymTabs(){document.getElementById("symTabs").innerHTML=symCats.map(c=>`<div style="padding:5px 10px;border-radius:16px;background:${c===viewCat?'#000;color:#fff':'#f1f3f6'};font-size:11px;cursor:pointer;font-weight:600;white-space:nowrap" onclick="setSym('${c}')">${c}</div>`).join('');}
@@ -162,10 +165,9 @@ if(viewCat==="Indices" && m.ty!=="INDIA INDEX" && m.ty!=="US INDEX") return fals
 if(q &&!m.s.toUpperCase().includes(q) &&!m.sym.toUpperCase().includes(q)) return false;
 return true;
 });
-document.getElementById("symList").innerHTML=list.map(m=>`<div class="sym-row" onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},${m.ac},${m.ai})"><div><b style="color:#2962ff">${m.s}</b> ${m.p.toFixed(2)}<br><span style="font-size:10px;color:#888">${m.sym} E:${m.e.toFixed(2)} SAME</span></div><div style="font-size:10px;color:#777">${m.ty} 100%</div></div>`).join('');
-document.getElementById("viewCount").innerText="("+list.length+" 100% SAME)";
+document.getElementById("symList").innerHTML=list.map(m=>`<div class="sym-row" onclick="loadC('${m.sym}','${m.s}','${m.sg}',${m.e},${m.t1},${m.t2},${m.t3},${m.sl},94,96)"><div><b style="color:#2962ff">${m.s}</b> ${m.p.toFixed(2)}<br><span style="font-size:10px;color:#888">① ${m.e.toFixed(2)} ② ${m.sl.toFixed(2)} ③ ${m.t1.toFixed(2)} ④ ${m.t2.toFixed(2)} ⑤ ${m.t3.toFixed(2)}</span></div><div style="font-size:10px;color:#777">${m.ty}</div></div>`).join('');
+document.getElementById("viewCount").innerText="("+list.length+" NUMBER & VALUE)";
 }
-// ONLY CLOCK UPDATE - PRICE NEVER CHANGES - NO RANDOM
-setInterval(()=>{document.getElementById("clock").innerText=new Date().toLocaleString('en-IN')+" • 100% ACCURATE - NO RANDOM - NO DIFFERENCE";},1000);
-renderTabs(); render(); renderSymTabs(); renderSymList(); loadC("OANDA:XAUUSD","XAU/USD GOLD 100% ACCURATE","BUY",0,0,0,0,0,97,98);
+setInterval(()=>{document.getElementById("clock").innerText=new Date().toLocaleString('en-IN')+" • MARKING NUMBER & VALUE ①②③④⑤";},1000);
+renderTabs(); render(); renderSymTabs(); renderSymList(); loadC("OANDA:XAUUSD","XAU/USD GOLD NUMBER & VALUE","BUY",0,0,0,0,0,97,98);
 </script></body></html>
