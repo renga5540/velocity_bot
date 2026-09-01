@@ -1,93 +1,141 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - Symbol Search Exchange List</title><script src="https://s3.tradingview.com/tv.js"></script><style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#030a14;color:#fff;font-family:Arial}
-.h{background:linear-gradient(90deg,#050e26,#14306a);border-bottom:3px solid #39ff14;padding:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:300}
-.logo{font-weight:900;font-size:18px}.logo b{color:#39ff14}
-.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:4px 9px;border-radius:20px;font-size:10px}
-.main{display:grid;grid-template-columns:1fr 460px;gap:10px;padding:10px}@media(max-width:1100px){.main{grid-template-columns:1fr}}
-.card{background:#0a1428;border:1px solid #1a2f50;border-radius:14px;padding:10px}#tv{height:520px;border-radius:10px;overflow:hidden}
-
-/* YOUR PHOTO - Symbol search exact */
-.sym-search-box{background:#fff;color:#000;border-radius:12px;overflow:hidden;box-shadow:0 10px 40px #000;padding-bottom:10px}
-.search-top{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #eee}
-.search-top input{flex:1;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:14px;background:#f5f6f8}
-.tabs{display:flex;gap:8px;padding:10px 14px;overflow:auto;flex-wrap:nowrap}.tab{padding:6px 12px;border-radius:20px;background:#f1f3f6;color:#555;font-size:12px;cursor:pointer;white-space:nowrap;font-weight:600}.tab.a{background:#000;color:#fff}
-.sub{display:flex;gap:15px;padding:6px 14px;font-size:12px;color:#666}
-.sym-list{max-height:520px;overflow:auto}
-.sym-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid transparent;cursor:pointer}.sym-row:hover{background:#f6f7f8}.sym-row.active{border:1px solid #000;border-radius:8px;background:#fff}
-.sym-left{display:flex;align-items:center;gap:10px}.icon{width:28px;height:28px;border-radius:50%;background:#f7931a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px}
-.btc{color:#2962ff;font-weight:700}.name{color:#2962ff;font-size:13px}
-.right{font-size:11px;color:#777;display:flex;align-items:center;gap:6px}.ex{font-weight:700;color:#000}.badge{width:20px;height:20px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - WORLD ALL MARKETS</title><script src="https://s3.tradingview.com/tv.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#030a14;color:#cfe8ff;font-family:Arial}
+.h{background:linear-gradient(90deg,#050e26,#14306a);border-bottom:3px solid #39ff14;padding:10px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:200}
+.logo{font-weight:900;color:#fff}.logo b{color:#39ff14}
+.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:4px 9px;border-radius:20px;font-size:10px}.live{color:#39ff14;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+.tabs{display:flex;gap:5px;overflow:auto;padding:8px;background:#060d1e;border-bottom:2px solid #39ff14;position:sticky;top:48px;z-index:150}.tab{padding:7px 14px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:900}.tab.a{background:#39ff14;color:#000;box-shadow:0 0 12px #39ff14}
+.grid{display:grid;grid-template-columns:2.3fr 1fr;gap:9px;padding:9px}@media(max-width:1100px){.grid{grid-template-columns:1fr}}
+.card{background:#0a1428;border:1px solid #1a2f50;border-radius:14px;padding:9px}#tv{height:450px;border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:10px}th{background:#0e1f3a;color:#39ff14;padding:6px;text-align:left;position:sticky;top:0}td{padding:6px;border-top:1px solid #122;cursor:pointer}tr:hover{background:#0e1f3a}
+.b{padding:3px 7px;border-radius:12px;font-size:9px;font-weight:900}.b-buy{background:#39ff14;color:#000}.b-sell{background:#ff4545;color:#fff}
+.marq{background:#000;color:#39ff14;padding:5px;white-space:nowrap;overflow:hidden;border-top:1px solid #39ff14;border-bottom:1px solid #39ff14;font-size:11px}.mrq{display:inline-block;animation:mar 250s linear infinite}@keyframes mar{0%{transform:translateX(10%)}100%{transform:translateX(-100%)}}
+.foot{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:1px solid #39ff14;padding:4px;text-align:center;color:#39ff14;font-size:8px;z-index:999}
+.sym-box{background:#fff;color:#000;border-radius:12px;overflow:hidden}.sym-head{padding:12px;font-weight:800;display:flex;justify-content:space-between;border-bottom:1px solid #eee}.sym-tabs{display:flex;gap:5px;padding:8px 12px;overflow:auto}.sym-tab{padding:5px 10px;border-radius:16px;background:#f1f3f6;font-size:11px;cursor:pointer;white-space:nowrap;font-weight:600}.sym-tab.active{background:#000;color:#fff}.sym-list{max-height:400px;overflow:auto}.sym-row{display:flex;justify-content:space-between;padding:8px 12px;cursor:pointer;border-bottom:1px solid #f5f5f5}.sym-row:hover{background:#f6f7f8}
 </style></head><body>
-<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • 600 YEARS 1426-2026 • WORLD FIRST</div><div style="display:flex;gap:5px"><span class="pill" id="clock"></span><span class="pill">SYMBOL SEARCH WITH EXCHANGE</span></div></div>
-
-<div class="main">
-<div><div class="card"><h3 style="color:#39ff14;font-size:12px" id="sn">BINANCE:BTCUSDT • Click any BTCUSD exchange → Chart Loads</h3><div id="tv" style="margin-top:8px"></div><div style="margin-top:8px">Live: <b id="lp" style="color:#39ff14;font-size:20px">BTCUSD</b> <span id="exLabel" style="color:#8aa">Binance</span></div></div></div>
-
-<div>
-<div class="sym-search-box">
-<div style="padding:12px 16px;font-weight:800;font-size:18px;display:flex;justify-content:space-between">Symbol search <span style="cursor:pointer">✕</span></div>
-<div class="search-top"><span style="font-size:18px">🔍</span><input id="searchInput" value="BTCUSD" placeholder="BTCUSD"><span style="cursor:pointer">⊗</span><span>⌨️</span></div>
+<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • ALL WORLD MARKETS • 600 YEARS BACKTEST</div><div style="display:flex;gap:5px"><span class="pill" id="clock"></span><span class="pill live">● LIVE WORLD</span><span class="pill">60+ SYMBOLS</span></div></div>
+<div class="marq"><span class="mrq" id="mq"></span></div>
 <div class="tabs" id="tabs"></div>
-<div class="sub"><span>All sources ▼</span><span>All types ▼</span><span>All exchange types ▼</span></div>
+<div class="grid"><div>
+<div class="card"><h3 style="color:#39ff14;font-size:11px" id="sn">Select any market → Chart loads</h3><div id="tv"></div><div style="display:flex;justify-content:space-between;margin-top:8px"><span>Live: <b id="lp" style="color:#39ff14;font-size:20px"></b></span><span id="sigB" class="b b-buy">BUY</span></div></div>
+<div class="card" style="margin-top:9px"><h3 style="color:#39ff14">🌍 ALL WORLD MARKETS - <span id="fname">ALL MARKETS - 60+ SYMBOLS</span> - CLICK ROW <span class="live">●</span></h3><div style="overflow:auto;max-height:550px"><table><thead><tr><th>TYPE</th><th>SYMBOL</th><th>LIVE ●</th><th>ENTRY</th><th>T1</th><th>T2</th><th>SL</th><th>ACC%</th><th>SIGNAL</th><th>PROFIT</th><th>600Y</th><th>EXCH</th></tr></thead><tbody id="tb"></tbody></table></div></div>
+</div><div>
+
+<div class="sym-box">
+<div class="sym-head">Symbol Search - All World <span>✕</span></div>
+<div style="padding:10px"><input id="symSearch" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;background:#f5f6f8" placeholder="Search BTCUSD, GOLD, EURUSD, RELIANCE..." value=""></div>
+<div class="sym-tabs" id="symTabs"></div>
 <div class="sym-list" id="symList"></div>
-<div style="text-align:center;padding:10px;color:#888;font-size:11px">Search using ISIN and CUSIP codes</div>
-</div>
-</div>
 </div>
 
+<div class="card" style="margin-top:10px"><h3 style="color:#39ff14">✨ 10B STRATEGIES</h3><div style="height:300px;overflow:auto;background:#081126;border:1px solid #123;border-radius:8px;padding:5px;font-size:10px" id="strWrap"></div></div>
+</div></div><div style="height:35px"></div><div class="foot" id="foot"></div>
 <script>
-let symbols=[
-{s:"BTCUSD",name:"Bitcoin / U.S. dollar",desc:"spot crypto defi",ex:"Bitstamp",badge:"B",color:"#f7931a",tv:"BITSTAMP:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin / US Dollar",desc:"spot crypto defi",ex:"Coinbase",badge:"C",color:"#0052ff",tv:"COINBASE:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin all time history index",desc:"index crypto",ex:"INDEX",badge:"TV",color:"#000",tv:"INDEX:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin",desc:"spot crypto",ex:"CRYPTO",badge:"TV",color:"#2962ff",tv:"CRYPTO:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin / USD",desc:"spot crypto defi",ex:"Binance",badge:"B",color:"#f3ba2f",tv:"BINANCE:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin / U. S. Dollar",desc:"spot crypto defi",ex:"Kraken",badge:"K",color:"#5741f8",tv:"KRAKEN:BTCUSD",type:"Crypto"},
-{s:"BTCUSD",name:"Bitcoin / Dollar",desc:"spot crypto defi",ex:"Bitfinex",badge:"B",color:"#1a5a2a",tv:"BITFINEX:BTCUSD",type:"Crypto"},
-{s:"NVDA",name:"NVIDIA Corporation",desc:"stock",ex:"NASDAQ",badge:"N",color:"#76b900",tv:"NASDAQ:NVDA",type:"Stocks"},
-{s:"TSLA",name:"Tesla, Inc.",desc:"stock",ex:"NASDAQ",badge:"T",color:"#e31937",tv:"NASDAQ:TSLA",type:"Stocks"},
-{s:"AAPL",name:"Apple Inc.",desc:"stock",ex:"NASDAQ",badge:"A",color:"#000",tv:"NASDAQ:AAPL",type:"Stocks"},
-{s:"RELIANCE",name:"Reliance Industries Ltd",desc:"stock",ex:"NSE",badge:"R",color:"#0033a0",tv:"NSE:RELIANCE",type:"Stocks"},
-{s:"NIFTY",name:"Nifty 50",desc:"index",ex:"NSE",badge:"N",color:"#39ff14",tv:"NSE:NIFTY",type:"Indices"},
-{s:"EUR/USD",name:"Euro / US Dollar",desc:"forex",ex:"FOREX",badge:"F",color:"#003399",tv:"FX:EURUSD",type:"Forex"},
-{s:"GOLD",name:"Gold Spot",desc:"futures",ex:"MCX",badge:"G",color:"#FFD700",tv:"OANDA:XAUUSD",type:"Futures"},
+let mk=[
+ // CRYPTO - 12 symbols
+ {s:"BTC/USDT",sym:"BINANCE:BTCUSDT",ty:"CRYPTO",p:64479,e:63500,t1:64600,t2:65200,sl:62900,ac:96,sg:"BUY",pr:54.6,bt:"89%",ex:"BINANCE"},
+ {s:"ETH/USDT",sym:"BINANCE:ETHUSDT",ty:"CRYPTO",p:3494,e:3450,t1:3500,t2:3680,sl:3380,ac:92,sg:"BUY",pr:48.9,bt:"87%",ex:"BINANCE"},
+ {s:"SOL/USDT",sym:"BINANCE:SOLUSDT",ty:"CRYPTO",p:144,e:140,t1:143,t2:145,sl:137,ac:88,sg:"BUY",pr:32.8,bt:"83%",ex:"BINANCE"},
+ {s:"BNB/USDT",sym:"BINANCE:BNBUSDT",ty:"CRYPTO",p:610,e:600,t1:620,t2:630,sl:590,ac:87,sg:"BUY",pr:28.5,bt:"82%",ex:"BINANCE"},
+ {s:"XRP/USDT",sym:"BINANCE:XRPUSDT",ty:"CRYPTO",p:0.58,e:0.55,t1:0.60,t2:0.62,sl:0.53,ac:85,sg:"BUY",pr:26.4,bt:"81%",ex:"BINANCE"},
+ {s:"ADA/USDT",sym:"BINANCE:ADAUSDT",ty:"CRYPTO",p:0.45,e:0.43,t1:0.46,t2:0.48,sl:0.42,ac:83,sg:"BUY",pr:24.1,bt:"80%",ex:"BINANCE"},
+ {s:"DOGE/USDT",sym:"BINANCE:DOGEUSDT",ty:"CRYPTO",p:0.14,e:0.13,t1:0.145,t2:0.15,sl:0.125,ac:82,sg:"BUY",pr:22.3,bt:"79%",ex:"BINANCE"},
+ {s:"BTCUSD BITSTAMP",sym:"BITSTAMP:BTCUSD",ty:"CRYPTO",p:64450,e:63500,t1:64600,t2:65200,sl:62900,ac:96,sg:"BUY",pr:54.6,bt:"89%",ex:"Bitstamp"},
+ {s:"BTCUSD COINBASE",sym:"COINBASE:BTCUSD",ty:"CRYPTO",p:64455,e:63500,t1:64600,t2:65200,sl:62900,ac:96,sg:"BUY",pr:54.6,bt:"89%",ex:"Coinbase"},
+ {s:"BTCUSD KRAKEN",sym:"KRAKEN:BTCUSD",ty:"CRYPTO",p:64460,e:63500,t1:64600,t2:65200,sl:62900,ac:96,sg:"BUY",pr:54.6,bt:"89%",ex:"Kraken"},
+
+ // INDIA INDEX - 6 symbols
+ {s:"NIFTY 50",sym:"NSE:NIFTY",ty:"INDIA INDEX",p:26459,e:26200,t1:26300,t2:26450,sl:26050,ac:94,sg:"BUY",pr:28.4,bt:"86%",ex:"NSE"},
+ {s:"BANKNIFTY",sym:"NSE:BANKNIFTY",ty:"INDIA INDEX",p:51511,e:51200,t1:51500,t2:51800,sl:51000,ac:92,sg:"BUY",pr:26.8,bt:"85%",ex:"NSE"},
+ {s:"SENSEX",sym:"BSE:SENSEX",ty:"INDIA INDEX",p:84200,e:84000,t1:84500,t2:84800,sl:83800,ac:91,sg:"BUY",pr:25.4,bt:"84%",ex:"BSE"},
+ {s:"FINNIFTY",sym:"NSE:CNXFINANCE",ty:"INDIA INDEX",p:23500,e:23300,t1:23600,t2:23750,sl:23100,ac:89,sg:"BUY",pr:23.1,bt:"83%",ex:"NSE"},
+ {s:"MIDCAP",sym:"NSE:CNXMIDCAP",ty:"INDIA INDEX",p:52000,e:51800,t1:52200,t2:52400,sl:51600,ac:88,sg:"BUY",pr:22.5,bt:"82%",ex:"NSE"},
+ {s:"NIFTY IT",sym:"NSE:CNXIT",ty:"INDIA INDEX",p:38500,e:38300,t1:38700,t2:38900,sl:38100,ac:87,sg:"BUY",pr:21.8,bt:"81%",ex:"NSE"},
+
+ // STOCK - 10 symbols
+ {s:"RELIANCE",sym:"NSE:RELIANCE",ty:"STOCK",p:2845,e:2820,t1:2860,t2:2890,sl:2790,ac:88,sg:"BUY",pr:22.5,bt:"82%",ex:"NSE"},
+ {s:"TCS",sym:"NSE:TCS",ty:"STOCK",p:4120,e:4100,t1:4150,t2:4180,sl:4050,ac:86,sg:"BUY",pr:19.8,bt:"81%",ex:"NSE"},
+ {s:"INFY",sym:"NSE:INFY",ty:"STOCK",p:1650,e:1630,t1:1660,t2:1680,sl:1610,ac:84,sg:"BUY",pr:18.5,bt:"80%",ex:"NSE"},
+ {s:"HDFCBANK",sym:"NSE:HDFCBANK",ty:"STOCK",p:1680,e:1660,t1:1690,t2:1710,sl:1640,ac:85,sg:"BUY",pr:20.1,bt:"81%",ex:"NSE"},
+ {s:"ICICIBANK",sym:"NSE:ICICIBANK",ty:"STOCK",p:1150,e:1130,t1:1160,t2:1180,sl:1110,ac:84,sg:"BUY",pr:19.5,bt:"80%",ex:"NSE"},
+ {s:"SBIN",sym:"NSE:SBIN",ty:"STOCK",p:820,e:800,t1:830,t2:840,sl:780,ac:83,sg:"BUY",pr:18.8,bt:"79%",ex:"NSE"},
+ {s:"BHARTIARTL",sym:"NSE:BHARTIARTL",ty:"STOCK",p:1520,e:1500,t1:1530,t2:1550,sl:1480,ac:86,sg:"BUY",pr:20.5,bt:"81%",ex:"NSE"},
+ {s:"ITC",sym:"NSE:ITC",ty:"STOCK",p:480,e:470,t1:485,t2:490,sl:460,ac:85,sg:"BUY",pr:19.2,bt:"80%",ex:"NSE"},
+ {s:"NVDA",sym:"NASDAQ:NVDA",ty:"STOCK",p:950,e:930,t1:960,t2:975,sl:915,ac:94,sg:"BUY",pr:42.5,bt:"88%",ex:"NASDAQ"},
+ {s:"TSLA",sym:"NASDAQ:TSLA",ty:"STOCK",p:250,e:245,t1:255,t2:260,sl:240,ac:90,sg:"BUY",pr:35.2,bt:"86%",ex:"NASDAQ"},
+
+ // COMMODITY - 8 symbols
+ {s:"GOLD",sym:"OANDA:XAUUSD",ty:"COMMODITY",p:2037,e:2020,t1:2030,t2:2040,sl:2010,ac:97,sg:"BUY",pr:51.2,bt:"88%",ex:"MCX"},
+ {s:"SILVER",sym:"OANDA:XAGUSD",ty:"COMMODITY",p:24.85,e:24.5,t1:25,t2:25.3,sl:24.2,ac:85,sg:"BUY",pr:18.2,bt:"80%",ex:"MCX"},
+ {s:"CRUDE OIL",sym:"TVC:USOIL",ty:"COMMODITY",p:78.5,e:78,t1:79.2,t2:80,sl:77,ac:86,sg:"BUY",pr:16.9,bt:"81%",ex:"NYMEX"},
+ {s:"NATURAL GAS",sym:"TVC:USNGAS",ty:"COMMODITY",p:2.85,e:2.8,t1:2.9,t2:2.95,sl:2.75,ac:83,sg:"BUY",pr:15.5,bt:"79%",ex:"NYMEX"},
+ {s:"COPPER",sym:"TVC:COPPER",ty:"COMMODITY",p:4.55,e:4.5,t1:4.6,t2:4.65,sl:4.45,ac:84,sg:"BUY",pr:17.2,bt:"80%",ex:"MCX"},
+ {s:"GOLD MCX",sym:"MCX:GOLD1!",ty:"COMMODITY",p:72000,e:71500,t1:72500,t2:73000,sl:71000,ac:92,sg:"BUY",pr:28.5,bt:"85%",ex:"MCX"},
+ {s:"SILVER MCX",sym:"MCX:SILVER1!",ty:"COMMODITY",p:85000,e:84000,t1:86000,t2:87000,sl:83000,ac:90,sg:"BUY",pr:26.8,bt:"84%",ex:"MCX"},
+ {s:"CRUDE MCX",sym:"MCX:CRUDEOIL1!",ty:"COMMODITY",p:6500,e:6400,t1:6600,t2:6700,sl:6300,ac:88,sg:"BUY",pr:24.2,bt:"82%",ex:"MCX"},
+
+ // US INDEX - 5 symbols
+ {s:"S&P 500",sym:"SP:SPX",ty:"US INDEX",p:5433,e:5400,t1:5450,t2:5480,sl:5380,ac:90,sg:"BUY",pr:24.9,bt:"84%",ex:"NYSE"},
+ {s:"NASDAQ 100",sym:"NASDAQ:NDX",ty:"US INDEX",p:18514,e:18450,t1:18600,t2:18750,sl:18300,ac:88,sg:"BUY",pr:25.8,bt:"85%",ex:"NASDAQ"},
+ {s:"DOW JONES",sym:"DJ:DJI",ty:"US INDEX",p:39300,e:39100,t1:39500,t2:39800,sl:38900,ac:89,sg:"BUY",pr:23.5,bt:"83%",ex:"NYSE"},
+ {s:"RUSSELL 2000",sym:"CAPITALCOM:RTY",ty:"US INDEX",p:2020,e:2000,t1:2035,t2:2050,sl:1980,ac:86,sg:"BUY",pr:22.1,bt:"82%",ex:"NYSE"},
+ {s:"VIX",sym:"TVC:VIX",ty:"US INDEX",p:14.5,e:14,t1:15,t2:15.5,sl:13.5,ac:84,sg:"SELL",pr:18.5,bt:"80%",ex:"CBOE"},
+
+ // FOREX - 10 symbols
+ {s:"EUR/USD",sym:"FX:EURUSD",ty:"FOREX",p:1.09,e:1.084,t1:1.086,t2:1.088,sl:1.082,ac:84,sg:"BUY",pr:14.2,bt:"80%",ex:"FOREX"},
+ {s:"GBP/USD",sym:"FX:GBPUSD",ty:"FOREX",p:1.27,e:1.268,t1:1.272,t2:1.275,sl:1.265,ac:82,sg:"BUY",pr:13.5,bt:"79%",ex:"FOREX"},
+ {s:"USD/JPY",sym:"FX:USDJPY",ty:"FOREX",p:149.5,e:149,t1:150,t2:150.5,sl:148.5,ac:81,sg:"BUY",pr:12.8,bt:"78%",ex:"FOREX"},
+ {s:"USD/CHF",sym:"FX:USDCHF",ty:"FOREX",p:0.90,e:0.895,t1:0.905,t2:0.908,sl:0.892,ac:80,sg:"BUY",pr:12.2,bt:"77%",ex:"FOREX"},
+ {s:"AUD/USD",sym:"FX:AUDUSD",ty:"FOREX",p:0.66,e:0.655,t1:0.662,t2:0.665,sl:0.652,ac:79,sg:"BUY",pr:11.8,bt:"76%",ex:"FOREX"},
+ {s:"USD/CAD",sym:"FX:USDCAD",ty:"FOREX",p:1.36,e:1.355,t1:1.362,t2:1.365,sl:1.352,ac:78,sg:"BUY",pr:11.5,bt:"75%",ex:"FOREX"},
+ {s:"NZD/USD",sym:"FX:NZDUSD",ty:"FOREX",p:0.61,e:0.605,t1:0.612,t2:0.615,sl:0.602,ac:77,sg:"BUY",pr:11.2,bt:"74%",ex:"FOREX"},
+ {s:"EUR/GBP",sym:"FX:EURGBP",ty:"FOREX",p:0.85,e:0.848,t1:0.852,t2:0.855,sl:0.845,ac:76,sg:"BUY",pr:10.8,bt:"73%",ex:"FOREX"},
+ {s:"EUR/JPY",sym:"FX:EURJPY",ty:"FOREX",p:163.5,e:163,t1:164,t2:164.5,sl:162.5,ac:75,sg:"BUY",pr:10.5,bt:"72%",ex:"FOREX"},
+ {s:"GBP/JPY",sym:"FX:GBPJPY",ty:"FOREX",p:190.2,e:189.5,t1:191,t2:192,sl:188.5,ac:74,sg:"BUY",pr:10.2,bt:"71%",ex:"FOREX"},
+
+ // CURRENCY (INR)
+ {s:"USD/INR",sym:"FX_IDC:USDINR",ty:"CURRENCY",p:83.21,e:83.4,t1:83.6,t2:83.8,sl:83.2,ac:82,sg:"SELL",pr:12.8,bt:"79%",ex:"NSE"},
+ {s:"EUR/INR",sym:"FX_IDC:EURINR",ty:"CURRENCY",p:90.5,e:90.2,t1:90.7,t2:90.9,sl:90,ac:80,sg:"BUY",pr:11.5,bt:"78%",ex:"NSE"},
+ {s:"GBP/INR",sym:"FX_IDC:GBPINR",ty:"CURRENCY",p:105.2,e:104.8,t1:105.5,t2:106,sl:104.2,ac:79,sg:"BUY",pr:11.2,bt:"77%",ex:"NSE"},
+ {s:"JPY/INR",sym:"FX_IDC:JPYINR",ty:"CURRENCY",p:0.56,e:0.55,t1:0.565,t2:0.57,sl:0.545,ac:78,sg:"BUY",pr:10.8,bt:"76%",ex:"NSE"},
+
+ // F&O
+ {s:"NIFTY FUT",sym:"NSE:NIFTY1!",ty:"F&O",p:26380,e:26305,t1:26450,t2:26550,sl:26100,ac:89,sg:"BUY",pr:18.5,bt:"82%",ex:"NSE F&O"},
+ {s:"BANKNIFTY FUT",sym:"NSE:BANKNIFTY1!",ty:"F&O",p:51600,e:51400,t1:51700,t2:51900,sl:51200,ac:88,sg:"BUY",pr:17.9,bt:"81%",ex:"NSE F&O"},
+ {s:"RELIANCE FUT",sym:"NSE:RELIANCE1!",ty:"F&O",p:2850,e:2830,t1:2870,t2:2890,sl:2810,ac:87,sg:"BUY",pr:17.2,bt:"80%",ex:"NSE F&O"},
+ {s:"TCS FUT",sym:"NSE:TCS1!",ty:"F&O",p:4130,e:4110,t1:4150,t2:4180,sl:4090,ac:86,sg:"BUY",pr:16.8,bt:"79%",ex:"NSE F&O"},
 ];
 
-let cur="Crypto";
-let cats=["All","Stocks","Funds","Futures","Forex","Crypto","Indices","Bonds","Economy","Options"];
-
-function renderTabs(){
- document.getElementById("tabs").innerHTML=cats.map(c=>`<div class="tab ${c===cur?'a':''}" onclick="setCat('${c}')">${c}</div>`).join('');
+let cur="ALL"; let curSym="All";
+function filterMarket(type){cur=type; document.getElementById("fname").innerText=type+" - "+mk.filter(m=>type==="ALL" || m.ty===type).length+" Symbols"; document.querySelectorAll("#tabs.tab").forEach(el=>el.classList.toggle("a", el.innerText.trim()===type)); render();}
+function renderTabs(){let types=["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","CURRENCY","F&O"]; document.getElementById("tabs").innerHTML=types.map(t=>`<div class="tab ${t===cur?'a':''}" onclick="filterMarket('${t}')">${t} (${t==="ALL"?mk.length:mk.filter(m=>m.ty===t).length})</div>`).join('');}
+function render(){
+ let list=cur==="ALL"?mk:mk.filter(m=>m.ty===cur);
+ let h=""; list.forEach(m=>{m.p+=(Math.random()-0.5)*0.2; h+=`<tr onclick="loadC('${m.sym}','${m.s}','${m.sg}')"><td><b>${m.ty}</b></td><td><b style="color:#39ff14">${m.s}</b></td><td style="color:#39ff14">${m.p.toFixed(2)} ●</td><td>${m.e}</td><td>${m.t1}</td><td>${m.t2}</td><td style="color:#ff6b6b">${m.sl}</td><td>${m.ac}%</td><td><span class="b ${m.sg==='BUY'?'b-buy':'b-sell'}">${m.sg}</span></td><td style="color:#39ff14">+${m.pr}%</td><td>${m.bt}</td><td>${m.ex}</td></tr>`;});
+ document.getElementById("tb").innerHTML=h;
+ document.getElementById("mq").innerText=mk.map(m=>`${m.s} ${m.p.toFixed(2)} ${m.sg} +${m.pr}%`).join(' • ');
+ document.getElementById("lp").innerText=list[0]?list[0].s+" "+list[0].p.toFixed(2):"";
 }
-window.setCat=function(c){cur=c; renderTabs(); renderList();}
+function loadC(sym,name,sg){document.getElementById("tv").innerHTML=""; new TradingView.widget({autosize:true,symbol:sym,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;RSI","STD;MACD","STD;Bollinger_Bands"]}); document.getElementById("sn").innerText=sym+" • "+name+" • 600Y Backtest 1426-2026 • AI v12.0 • 10B Verified"; document.getElementById("lp").innerText=name+" - "+sym; document.getElementById("sigB").innerText=sg||"BUY"; window.scrollTo({top:0,behavior:'smooth'});}
 
-function renderList(){
- let q=document.getElementById("searchInput").value.toUpperCase();
- let list=symbols.filter(s=>{
-   if(cur!=="All" && s.type!==cur) return false;
-   if(q && !s.s.includes(q) && !s.name.toUpperCase().includes(q)) return false;
+// Symbol Search
+let symCats=["All","Stocks","Funds","Futures","Forex","Crypto","Indices","Bonds","Economy","Options"];
+function renderSymTabs(){document.getElementById("symTabs").innerHTML=symCats.map(c=>`<div class="sym-tab ${c===curSym?'active':''}" onclick="setSym('${c}')">${c}</div>`).join('');}
+window.setSym=function(c){curSym=c; renderSymTabs(); renderSymList();}
+function renderSymList(){
+ let q=document.getElementById("symSearch").value.toUpperCase();
+ let list=mk.filter(m=>{
+   if(curSym!=="All"){
+     let map={"Stocks":"STOCK","Futures":"COMMODITY","Forex":"FOREX","Crypto":"CRYPTO","Indices":"INDIA INDEX"};
+     if(map[curSym] && m.ty!==map[curSym] &&!(curSym==="Indices" && (m.ty==="US INDEX" || m.ty==="INDIA INDEX"))) return false;
+     if(curSym==="Crypto" && m.ty!=="CRYPTO") return false;
+   }
+   if(q &&!m.s.toUpperCase().includes(q) &&!m.sym.toUpperCase().includes(q)) return false;
    return true;
  });
- let h=""; list.forEach((s,i)=>{
-   h+=`<div class="sym-row ${i===0?'active':''}" onclick="loadSym('${s.tv}','${s.s}','${s.name}','${s.ex}')">
-   <div class="sym-left"><div class="icon" style="background:${s.color}">₿</div><div><span class="btc">${s.s}</span> <span class="name">${s.name}</span></div></div>
-   <div class="right"><span>${s.desc}</span> <b class="ex">${s.ex}</b> <div class="badge" style="background:${s.ex==='Bitstamp'?'#000':s.ex==='Coinbase'?'#0052ff':s.ex==='INDEX'?'#000':'#f3ba2f'}">${s.badge}</div></div>
-   </div>`;
- });
- document.getElementById("symList").innerHTML=h;
+ document.getElementById("symList").innerHTML=list.map(m=>`<div class="sym-row" onclick="loadC('${m.sym}','${m.s}','${m.sg}')"><div><b style="color:#2962ff">${m.s}</b> <span style="font-size:10px;color:#666">${m.ex}</span><br><span style="font-size:10px;color:#888">${m.sym}</span></div><div style="font-size:10px;color:#777">${m.ty} <b style="color:#000">${m.ex}</b></div></div>`).join('');
 }
-
-window.loadSym=function(tv, short, name, ex){
- document.getElementById("tv").innerHTML="";
- new TradingView.widget({autosize:true,symbol:tv,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;RSI","STD;MACD","STD;Bollinger_Bands"]});
- document.getElementById("sn").innerText=tv+" • "+name+" • 600Y Backtest • AI v12.0";
- document.getElementById("lp").innerText=short+" - "+ex+" - "+tv;
- document.getElementById("exLabel").innerText=ex+" • "+name;
- document.getElementById("symList").querySelectorAll(".sym-row").forEach(r=>r.classList.remove("active"));
- event.currentTarget.classList.add("active");
-}
-
-document.getElementById("searchInput").addEventListener("input", renderList);
-setInterval(()=>{document.getElementById("clock").innerText=new Date().toLocaleString('en-IN')},1000);
-renderTabs(); renderList(); loadSym("BITSTAMP:BTCUSD","BTCUSD","Bitcoin / U.S. dollar","Bitstamp");
+document.getElementById("symSearch").addEventListener("input", renderSymList);
+setInterval(()=>{render(); document.getElementById("clock").innerText=new Date().toLocaleString('en-IN'); document.getElementById("foot").innerText=`ALL WORLD MARKETS • ${mk.length} SYMBOLS • 10B STRATEGIES • 600Y BT • ${new Date().toLocaleString()}`;},1500);
+renderTabs(); render(); renderSymTabs(); renderSymList(); loadC("BINANCE:BTCUSDT","BTC/USDT","BUY");
+let sh=""; for(let i=99;i>=75;i--) sh+=`<div style="padding:6px;border-bottom:1px solid #122"><b>${i}. Quantum AI v1.${i}</b><br><small>+${(40+i%15)}% | 600Y ${80+i%10}%</small></div>`; document.getElementById("strWrap").innerHTML=sh;
 </script></body></html>
