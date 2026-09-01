@@ -5,7 +5,7 @@
 <div id="tradingview" class="tv"></div>
 <table><thead><tr><th>SYMBOL</th><th>LIVE</th><th>ENTRY</th><th>T1</th><th>T2</th><th>T3</th><th>SL</th><th>ACC%</th><th>SIGNAL</th></tr></thead><tbody id="tb"></tbody></table>
 <script>
-let data=[{s:"GOLD MCX",p:71750,e:71700,t1:71850,t2:72000,t3:72200,sl:71550,ac:92,sg:"BUY"},{s:"NIFTY",p:26120,e:26100,t1:26200,t2:26300,t3:26450,sl:26000,ac:89,sg:"BUY"},{s:"BTCUSDT",p:64250,e:64000,t1:64500,t2:65200,t3:66000,sl:63500,ac:86,sg:"BUY"},{s:"BANKNIFTY",p:51200,e:51000,t1:51400,t2:51700,t3:52000,sl:50800,ac:84,sg:"SELL"},{s:"NASDAQ",p:18500,e:18450,t1:18600,t2:18750,t3:18900,sl:18300,ac:80,sg:"BUY"}];
+let data=[{s:"OANDA:XAUUSD",p:71750,e:71700,t1:71850,t2:72000,t3:72200,sl:71550,ac:92,sg:"BUY"},{s:"NIFTY",p:26120,e:26100,t1:26200,t2:26300,t3:26450,sl:26000,ac:89,sg:"BUY"},{s:"BTCUSDT",p:64250,e:64000,t1:64500,t2:65200,t3:66000,sl:63500,ac:86,sg:"BUY"},{s:"BANKNIFTY",p:51200,e:51000,t1:51400,t2:51700,t3:52000,sl:50800,ac:84,sg:"SELL"},{s:"NASDAQ",p:18500,e:18450,t1:18600,t2:18750,t3:18900,sl:18300,ac:80,sg:"BUY"}];
 function upd(){let h="";data.forEach(d=>{d.p+=(Math.random()-0.5)*2; h+=`<tr class=${d.sg=='BUY'?'buy':'sell'}><td><b>${d.s}</b></td><td>${d.p.toFixed(2)} <span class=live>●</span></td><td>${d.e}</td><td>${d.t1}</td><td>${d.t2}</td><td>${d.t3}</td><td>${d.sl}</td><td>${d.ac}%</td><td><b>${d.sg}</b> - 92%</td></tr>`});document.getElementById("tb").innerHTML=h;document.getElementById("time").innerText=new Date().toLocaleTimeString()} setInterval(upd,1000);upd();
 new TradingView.widget({autosize:true,symbol:"MCX:GOLD",interval:"5",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"in",container_id:"tradingview",studies:["STD;SuperTrend"]});
 </script></body></html>
