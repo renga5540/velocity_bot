@@ -110,3 +110,9 @@ function filterMarket(type){
 }
 function setType(t){ filterMarket(t); }
 
+function render(){
+ let list = [];
+ if(cur=="ALL") list = mk;
+ else if(cur=="INDIA INDEX") list = mk.filter(m=>m.ty.includes("INDIA")||m.s.includes("NIFTY")||m.s.includes("BANKNIFTY"));
+ else if(cur=="STOCK") list = mk.filter(m=>m.ty=="STOCK"||m.ty=="F&O");
+ else list = mk.filter(m=>m.ty==cur);
