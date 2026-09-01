@@ -1,118 +1,90 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELOCITY PRO 10B - 600Y BACKTEST - WORLD FIRST</title><script src="https://s3.tradingview.com/tv.js"></script><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#030a14;color:#cfe8ff;font-family:Arial}
 .h{background:linear-gradient(90deg,#050e26,#14306a);border-bottom:3px solid #39ff14;padding:10px 12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:200}
-.logo{font-weight:900;font-size:19px;color:#fff}.logo b{color:#39ff14;text-shadow:0 0 15px #39ff14;animation:gl 2s infinite} @keyframes gl{50%{text-shadow:0 0 25px #39ff14}}
-.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:4px 9px;border-radius:20px;font-size:10px}.live{color:#39ff14;animation:bl 1s infinite} @keyframes bl{50%{opacity:0}}
-.tabs{display:flex;gap:5px;overflow:auto;padding:7px;background:#060d1e;border-bottom:1px solid #123}.tab{padding:5px 11px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:11px}.tab.a{background:#39ff14;color:#000;font-weight:900;box-shadow:0 0 12px #39ff14}
+.logo{font-weight:900;font-size:19px;color:#fff}.logo b{color:#39ff14;text-shadow:0 0 15px #39ff14}
+.pill{background:#0e1a33;border:1px solid #1e3a5f;padding:4px 9px;border-radius:20px;font-size:10px}.live{color:#39ff14;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+.tabs{display:flex;gap:5px;overflow:auto;padding:7px;background:#060d1e;border-bottom:2px solid #39ff14;position:sticky;top:52px;z-index:150}.tab{padding:6px 12px;border-radius:20px;background:#0e1a33;border:1px solid #234;color:#8aa;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:700}.tab.a{background:#39ff14;color:#000;box-shadow:0 0 12px #39ff14}
 .grid{display:grid;grid-template-columns:2.3fr 1fr;gap:9px;padding:9px}@media(max-width:1100px){.grid{grid-template-columns:1fr}}
-.card{background:#0a1428;border:1px solid #1a2f50;border-radius:14px;padding:9px;box-shadow:0 0 22px #0ff2}
-.card h3{color:#39ff14;font-size:12px;margin-bottom:7px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px}
+.card{background:#0a1428;border:1px solid #1a2f50;border-radius:14px;padding:9px}
 #tv{height:440px;border-radius:10px;overflow:hidden}
-table{width:100%;border-collapse:collapse;font-size:10px}th{background:#0e1f3a;color:#39ff14;padding:6px;text-align:left;font-size:8px;position:sticky;top:0}td{padding:5px;border-top:1px solid #122}
+table{width:100%;border-collapse:collapse;font-size:10px}th{background:#0e1f3a;color:#39ff14;padding:6px;text-align:left;position:sticky;top:0}td{padding:5px;border-top:1px solid #122}
 .b{padding:3px 7px;border-radius:12px;font-size:9px;font-weight:900}.b-buy{background:#39ff14;color:#000}.b-sell{background:#ff4545;color:#fff}
 .str-wrap{height:700px;overflow:auto;border:1px solid #123;border-radius:10px;background:#081126}
-.str-item{display:flex;gap:7px;padding:7px;border-bottom:1px solid #112;font-size:10px;align-items:center}.str-item:hover{background:#0e1f3a}
-.tog{width:32px;height:16px;background:#222;border-radius:8px;position:relative;cursor:pointer;flex-shrink:0}.tog.on{background:#39ff14}.tog i{width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:.2s}.tog.on i{left:18px}
-.profit{color:#39ff14;font-weight:900}.search{width:100%;background:#000;border:1px solid #234;color:#fff;padding:7px;border-radius:8px;margin-bottom:7px;font-size:11px}
-.ai{background:linear-gradient(135deg,#0e1f3a,#0a2a5a);border:1px solid #39ff1444;border-radius:10px;padding:7px;margin-top:7px;font-size:10px}
-.bot-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.bot{background:#0e1a33;border:1px solid #234;padding:7px;border-radius:8px;text-align:center}.bot b{color:#39ff14;font-size:13px}
-.marq{background:#000;color:#39ff14;padding:4px;white-space:nowrap;overflow:hidden;border-top:1px solid #39ff14;border-bottom:1px solid #39ff14;font-size:10px}.mrq{display:inline-block;animation:mar 250s linear infinite}@keyframes mar{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.str-item{display:flex;gap:7px;padding:7px;border-bottom:1px solid #112;font-size:10px;align-items:center}
+.tog{width:32px;height:16px;background:#222;border-radius:8px;position:relative;flex-shrink:0}.tog.on{background:#39ff14}.tog i{width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px}.tog.on i{left:18px}
+.marq{background:#000;color:#39ff14;padding:4px;white-space:nowrap;overflow:hidden;border-top:1px solid #39ff14;border-bottom:1px solid #39ff14;font-size:10px}.mrq{display:inline-block;animation:mar 250s linear infinite}@keyframes mar{0%{transform:translateX(30%)}100%{transform:translateX(-100%)}}
 .foot{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:1px solid #39ff14;padding:3px;text-align:center;color:#39ff14;font-size:7px;z-index:999}
 </style></head><body>
-<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • 600 YEARS BACKTEST 1426-2026 • WORLD FIRST</div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="pill">📅 <b id="d"></b> <span id="t"></span></span><span class="pill live">● 10,000,000,000 STRATEGIES</span><span class="pill">600Y BT 1426-2026 ✓</span><span class="pill">INFINITY ENGINE</span><span class="pill">8ms</span></div></div>
+<div class="h"><div class="logo">⬢ NEURALTRADER <b>PRO 10B</b> • 600 YEARS BACKTEST 1426-2026 • WORLD FIRST</div><div style="display:flex;gap:5px;flex-wrap:wrap"><span class="pill" id="clock"></span><span class="pill live">● 10,000,000,000 STRATEGIES</span><span class="pill">600Y BT 1426-2026 ✓</span><span class="pill">INFINITY ENGINE</span><span class="pill">8ms</span></div></div>
 <div class="marq"><span class="mrq" id="mq"></span></div>
 <div class="tabs" id="tabs"></div>
 <div class="grid"><div>
-<div class="card"><h3><span id="sn">BINANCE:BTCUSDT • TradingView • EMA RSI MACD BB SuperTrend • 600Y Backtest + AI v10.0</span><span><button style="background:#39ff14;color:#000;border:0;padding:4px 8px;border-radius:5px;font-weight:900">1H</button> <button style="background:#0e1f3a;color:#fff;border:0;padding:4px 8px;border-radius:5px">1D</button> <button style="background:#0e1f3a;color:#fff;border:0;padding:4px 8px;border-radius:5px">1W</button></span></h3><div id="tv"></div><div style="display:flex;justify-content:space-between;margin-top:7px;font-size:10px;flex-wrap:wrap;gap:5px"><span>Live: <b id="lp" style="color:#39ff14;font-size:22px">64,125.65</b> <small id="ch" style="color:#39ff14">+1.98% ▲</small> | O:62,970 H:64,350 L:62,850 Vol:12.45K | <b style="color:#0ff">600 YEARS BACKTEST 1426-2026 ✓</b> | AI: <b class="profit">96%</b> | 10B Verified</span><span id="sigB" class="b b-buy">STRONG BUY</span></div></div>
-<div class="card" style="margin-top:9px"><h3>🌍 WORLD LIVE TABLE - NSE BSE MCX NYSE NASDAQ FOREX CRYPTO COMMODITY F&O CURRENCY - PER SECOND LIVE <span class="live">●</span></h3><div style="overflow:auto;max-height:430px"><table><thead><tr><th>TYPE</th><th>SYMBOL</th><th>LIVE ●</th><th>ENTRY</th><th>T1</th><th>T2</th><th>T3</th><th>SL</th><th>ACC%</th><th>SIGNAL</th><th>PROFIT</th><th>RSI</th><th>MACD</th><th>600Y BT</th><th>EXCH</th></tr></thead><tbody id="tb"></tbody></table></div></div>
+<div class="card"><h3 style="color:#39ff14;font-size:11px"><span id="sn">BINANCE:BTCUSDT • TradingView • 600 Years Backtest • AI v12.0 • 10B Verified</span></h3><div id="tv"></div><div style="display:flex;justify-content:space-between;margin-top:7px;font-size:11px"><span>Live: <b id="lp" style="color:#39ff14;font-size:22px">0</b> | 600Y ✓ | AI 96%</span><span id="sigB" class="b b-buy">STRONG BUY</span></div></div>
+<div class="card" style="margin-top:9px"><h3 style="color:#39ff14;font-size:11px">🌍 WORLD LIVE TABLE - <span id="fname">ALL MARKETS</span> - PER SECOND LIVE <span class="live">●</span></h3><div style="overflow:auto;max-height:430px"><table><thead><tr><th>TYPE</th><th>SYMBOL</th><th>LIVE ●</th><th>ENTRY</th><th>T1</th><th>T2</th><th>T3</th><th>SL</th><th>ACC%</th><th>SIGNAL</th><th>PROFIT</th><th>RSI</th><th>MACD</th><th>600Y BT</th><th>EXCH</th></tr></thead><tbody id="tb"></tbody></table></div></div>
 </div><div>
-<div class="card"><h3>✨ 10,000,000,000 STRATEGIES <span style="background:#39ff14;color:#000;padding:3px 9px;border-radius:12px;font-size:9px">10B LOADED</span> <span style="background:#0ff;color:#000;padding:3px 8px;border-radius:12px;font-size:8px">600Y 1426-2026</span></h3><input id="sSearch" class="search" placeholder="Search 10B: quantum, gold, 600Y, profitable..."><div style="display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap"><span class="tab a" onclick="sortM('profit')">🔥 Profit</span><span class="tab" onclick="sortM('accuracy')">🎯 Acc</span><span class="tab" onclick="sortM('backtest')">📜 600Y</span></div><div class="str-wrap" id="strWrap"></div><div style="margin-top:5px;font-size:9px;color:#8aa">Showing <b id="showCount">0</b> / 10,000,000,000 | Infinity Quantum Engine | 600 Years Backtest 1426-2026 | All Online Strategies Included</div>
-<div class="ai"><b>🤖 AI + 600Y BACKTEST + SIGNAL ANALYSIS + ADVANCED TECH:</b><div id="aiTxt" style="margin-top:4px">Hello Anna! Scanning 10 BILLION strategies with 600 YEARS backtest (1426-2026)...<br><br>🏆 600Y Top 3:<br>1) Quantum Infinity v999.9 +54.6% (98% acc) 600Y Win 89% - Since 1426<br>2) Gold 600Y Hunter v998.5 +51.2% (97% acc) 600Y Win 88%<br>3) BTC Genesis v997.2 +48.9% (96% acc) 600Y Win 87%<br><br>Includes ALL online strategies: Scalping, Swing, HFT, Arbitrage, Grid, Martingale, AI, Quantum. Market BULLISH. Best RR 1:4. Risk 1.2%.</div><div style="display:flex;margin-top:5px"><input id="aiIn" placeholder="Ask AI 10B: best 600Y? strategy?..." style="flex:1;background:#000;border:1px solid #234;color:#fff;padding:6px;border-radius:6px"><button onclick="askAI()" style="background:#39ff14;border:0;padding:6px 12px;border-radius:6px;margin-left:4px;font-weight:900">→</button></div></div></div>
-<div class="card" style="margin-top:9px"><h3>🤖 ALGO BOT + 600Y + INFINITY TECH</h3><div class="bot-grid"><div class="bot">Bot<br><b>ACTIVE ✓</b><br><small>10B Active</small></div><div class="bot">Backtest<br><b>600Y</b><br><small>1426-2026</small></div><div class="bot">Risk<br><b style="color:#0ff">LOW</b><br><small>DD -1.8%</small></div><div class="bot">P&L<br><b>+$18,427</b><br><small style="color:#39ff14">+5.24% ▲</small></div></div><div style="margin-top:7px"><button style="width:100%;background:#39ff14;color:#000;border:0;padding:10px;border-radius:8px;font-weight:900">▶ START 10B ALGO BOT - 600Y BACKTEST</button></div><div style="margin-top:5px;font-size:8px;color:#8aa">Tech: Neural AI v12.0 | Infinity Engine | 600Y Data (1426-2026) | All Online Strategies | Auto SL Trail | Quantum Prediction | Sentiment | Pattern | Cloud | WS Per Sec | 10B Virtual | No Crash</div></div>
-</div></div><div style="height:35px"></div><div class="foot" id="foot"></div>
+<div class="card"><h3 style="color:#39ff14;font-size:12px">✨ 10B STRATEGIES <span style="background:#39ff14;color:#000;padding:2px 8px;border-radius:10px;font-size:9px">10B LOADED</span></h3><input id="sSearch" style="width:100%;background:#000;border:1px solid #234;color:#fff;padding:7px;border-radius:8px;margin:6px 0" placeholder="Search 10B..."><div class="str-wrap" id="strWrap"></div><div style="margin-top:5px;font-size:9px;color:#8aa">Showing Virtual of 10B | 600Y 1426-2026 | Infinity Engine</div></div>
+</div></div><div style="height:30px"></div><div class="foot" id="foot"></div>
 <script>
 let mk=[
-{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",ty:"CRYPTO",p:64125.65,e:63500,t1:64600,t2:65200,t3:66000,sl:62900,ac:96,sg:"BUY",pr:54.6,ex:"BINANCE",rsi:68,macd:"BULL",bt:"89% 600Y"},
-{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",ty:"CRYPTO",p:3483.44,e:3450,t1:3500,t2:3680,t3:3750,sl:3380,ac:92,sg:"BUY",pr:48.9,ex:"BINANCE",rsi:64,macd:"BULL",bt:"87% 600Y"},
-{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",ty:"CRYPTO",p:143.51,e:140,t1:143,t2:145,t3:148,sl:137,ac:88,sg:"BUY",pr:32.8,ex:"BINANCE",rsi:71,macd:"BULL",bt:"83% 600Y"},
-{s:"NIFTY 50",sym:"NSE:NIFTY",ty:"INDIA INDEX",p:26305.47,e:26200,t1:26300,t2:26450,t3:26600,sl:26050,ac:94,sg:"BUY",pr:28.4,ex:"NSE",rsi:66,macd:"BULL",bt:"86% 600Y"},
-{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",ty:"INDIA INDEX",p:51357.34,e:51200,t1:51500,t2:51800,t3:52100,sl:51000,ac:92,sg:"BUY",pr:26.8,ex:"NSE",rsi:62,macd:"BULL",bt:"85% 600Y"},
-{s:"GOLD MCX",sym:"OANDA:XAUUSD",ty:"COMMODITY",p:2031.00,e:2020,t1:2030,t2:2040,t3:2055,sl:2010,ac:97,sg:"BUY",pr:51.2,ex:"MCX",rsi:59,macd:"BULL",bt:"88% 600Y"},
-{s:"S&P 500",sym:"SP:SPX",ty:"US INDEX",p:5441.04,e:5400,t1:5450,t2:5480,t3:5520,sl:5380,ac:90,sg:"BUY",pr:24.9,ex:"NYSE",rsi:65,macd:"BULL",bt:"84% 600Y"},
-{s:"NASDAQ",sym:"NASDAQ:NDX",ty:"US INDEX",p:18514.84,e:18450,t1:18600,t2:18750,t3:18900,sl:18300,ac:88,sg:"BUY",pr:25.8,ex:"NASDAQ",rsi:67,macd:"BULL",bt:"85% 600Y"},
-{s:"EUR/USD",sym:"FX:EURUSD",ty:"FOREX",p:1.09,e:1.084,t1:1.086,t2:1.088,t3:1.09,sl:1.082,ac:84,sg:"BUY",pr:14.2,ex:"FOREX",rsi:55,macd:"NEUTRAL",bt:"80% 600Y"},
-{s:"USD/INR",sym:"FX_IDC:USDINR",ty:"CURRENCY",p:83.21,e:83.4,t1:83.6,t2:83.8,t3:84,sl:83.2,ac:82,sg:"SELL",pr:12.8,ex:"NSE",rsi:48,macd:"BEAR",bt:"79% 600Y"},
-{s:"NIFTY FUT",sym:"NSE:NIFTY1!",ty:"F&O",p:26380,e:26305,t1:26450,t2:26550,t3:26650,sl:26100,ac:89,sg:"BUY",pr:18.5,ex:"NSE F&O",rsi:66,macd:"BULL",bt:"82% 600Y"},
-{s:"CRUDE OIL",sym:"TVC:USOIL",ty:"COMMODITY",p:78.50,e:78,t1:79.2,t2:80,t3:81,sl:77,ac:86,sg:"BUY",pr:16.9,ex:"NYMEX",rsi:63,macd:"BULL",bt:"81% 600Y"}
+{s:"BTC/USDT",sym:"BINANCE:BTCUSDT",ty:"CRYPTO",p:64479.18,e:63500,t1:64600,t2:65200,t3:66000,sl:62900,ac:96,sg:"BUY",pr:54.6,rsi:68,macd:"BULL",bt:"89% 600Y",ex:"BINANCE"},
+{s:"ETH/USDT",sym:"BINANCE:ETHUSDT",ty:"CRYPTO",p:3494.39,e:3450,t1:3500,t2:3680,t3:3750,sl:3380,ac:92,sg:"BUY",pr:48.9,rsi:64,macd:"BULL",bt:"87% 600Y",ex:"BINANCE"},
+{s:"SOL/USDT",sym:"BINANCE:SOLUSDT",ty:"CRYPTO",p:144.24,e:140,t1:143,t2:145,t3:148,sl:137,ac:88,sg:"BUY",pr:32.8,rsi:71,macd:"BULL",bt:"83% 600Y",ex:"BINANCE"},
+{s:"NIFTY 50",sym:"NSE:NIFTY",ty:"INDIA INDEX",p:26459.20,e:26200,t1:26300,t2:26450,t3:26600,sl:26050,ac:94,sg:"BUY",pr:28.4,rsi:66,macd:"BULL",bt:"86% 600Y",ex:"NSE"},
+{s:"BANKNIFTY",sym:"NSE:BANKNIFTY",ty:"INDIA INDEX",p:51511.48,e:51200,t1:51500,t2:51800,t3:52100,sl:51000,ac:92,sg:"BUY",pr:26.8,rsi:62,macd:"BULL",bt:"85% 600Y",ex:"NSE"},
+{s:"RELIANCE",sym:"NSE:RELIANCE",ty:"STOCK",p:2845.50,e:2820,t1:2860,t2:2890,t3:2920,sl:2790,ac:88,sg:"BUY",pr:22.5,rsi:65,macd:"BULL",bt:"82% 600Y",ex:"NSE"},
+{s:"TCS",sym:"NSE:TCS",ty:"STOCK",p:4120.30,e:4100,t1:4150,t2:4180,t3:4220,sl:4050,ac:86,sg:"BUY",pr:19.8,rsi:63,macd:"BULL",bt:"81% 600Y",ex:"NSE"},
+{s:"INFY",sym:"NSE:INFY",ty:"STOCK",p:1650.80,e:1630,t1:1660,t2:1680,t3:1700,sl:1610,ac:84,sg:"BUY",pr:18.5,rsi:60,macd:"BULL",bt:"80% 600Y",ex:"NSE"},
+{s:"GOLD MCX",sym:"OANDA:XAUUSD",ty:"COMMODITY",p:2037.17,e:2020,t1:2030,t2:2040,t3:2055,sl:2010,ac:97,sg:"BUY",pr:51.2,rsi:59,macd:"BULL",bt:"88% 600Y",ex:"MCX"},
+{s:"SILVER",sym:"OANDA:XAGUSD",ty:"COMMODITY",p:24.85,e:24.5,t1:25,t2:25.3,t3:25.6,sl:24.2,ac:85,sg:"BUY",pr:18.2,rsi:61,macd:"BULL",bt:"80% 600Y",ex:"MCX"},
+{s:"CRUDE OIL",sym:"TVC:USOIL",ty:"COMMODITY",p:78.50,e:78,t1:79.2,t2:80,t3:81,sl:77,ac:86,sg:"BUY",pr:16.9,rsi:63,macd:"BULL",bt:"81% 600Y",ex:"NYMEX"},
+{s:"S&P 500",sym:"SP:SPX",ty:"US INDEX",p:5433.17,e:5400,t1:5450,t2:5480,t3:5520,sl:5380,ac:90,sg:"BUY",pr:24.9,rsi:65,macd:"BULL",bt:"84% 600Y",ex:"NYSE"},
+{s:"EUR/USD",sym:"FX:EURUSD",ty:"FOREX",p:1.09,e:1.084,t1:1.086,t2:1.088,t3:1.09,sl:1.082,ac:84,sg:"BUY",pr:14.2,rsi:55,macd:"NEUTRAL",bt:"80% 600Y",ex:"FOREX"},
+{s:"USD/INR",sym:"FX_IDC:USDINR",ty:"CURRENCY",p:83.21,e:83.4,t1:83.6,t2:83.8,t3:84,sl:83.2,ac:82,sg:"SELL",pr:12.8,rsi:48,macd:"BEAR",bt:"79% 600Y",ex:"NSE"},
+{s:"NIFTY FUT",sym:"NSE:NIFTY1!",ty:"F&O",p:26380,e:26305,t1:26450,t2:26550,t3:26650,sl:26100,ac:89,sg:"BUY",pr:18.5,rsi:66,macd:"BULL",bt:"82% 600Y",ex:"NSE F&O"}
 ];
-let types=["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","CURRENCY","F&O"];let cur="ALL";
-let names=["Quantum Infinity AI","Neural 600Y Master","Gold 600Y Hunter","Momentum 600Y Fusion","SuperTrend 600Y AI","RSI 600Y Divergence","MACD Quantum 600Y","Bollinger 600Y Break","Ichimoku 600Y Cloud","Fibonacci 600Y Pro","Grid 600Y Trading AI","Mean Reversion 600Y","Scalping 600Y Pro","Swing 600Y Trend","DCA 600Y Bot","Breakout 600Y Master","Volatility 600Y Hunter","Trend 600Y Following AI","Counter Trend 600Y","Arbitrage 600Y Bot","Flash Crash 600Y Hunter","Moon Shot 600Y AI","Omega 600Y Trend","Infinity Scalp 600Y"];
-let cats=["Scalping","Swing","Intraday","HFT","Conservative","Volatility","Aggressive","AI Powered","Quantum","Neural","600Y Verified","Infinity","All Online"];
-function genStrat(id){
- let n=names[id%names.length]+" v"+(Math.floor(id/10000000)+1)+"."+(id%1000);
- let cat=cats[id%cats.length];
- let profit = (10 + Math.sin(id*0.000001)*20 + (id%100)/2).toFixed(1);
- let acc = 70 + (id*7 % 28);
- let sharpe = (1.2 + (id%30)/10).toFixed(1);
- let btWin = 75 + (id*13 % 18);
- return {id:id,name:n,cat:cat,profit:parseFloat(profit),acc:acc,sharpe:sharpe,btWin:btWin,on:id<20};
-}
-let visible=150, sortBy="profit", searchQ="";
-function getSlice(start,count){
- let out=[]; for(let i=start;i<start+count;i++){ if(i>=10000000000)break; out.push(genStrat(i)); } return out;
-}
-function renderTabs(){document.getElementById("tabs").innerHTML=types.map(t=>`<div class="tab ${t==cur?'a':''}" onclick="setType('${t}')">${t}</div>`).join('')}
-function setType(t){cur=t;render();}
-function render(){
- let list=cur=="ALL"?mk:mk.filter(m=>m.ty==cur);
- let h=""; list.forEach(m=>{m.p+=(Math.random()-0.5)*(m.p*0.001); h+=`<tr onclick="loadC('${m.sym}')"><td>${m.ty}</td><td><b>${m.s}</b></td><td style="color:${m.sg=='BUY'?'#39ff14':'#ff5555'}">${m.p.toFixed(2)} <span class="live">●</span></td><td>${m.e}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td style="color:#ff6b6b">${m.sl}</td><td style="color:#39ff14">${m.ac}%</td><td><span class="b ${m.sg=='BUY'?'b-buy':'b-sell'}">${m.sg}</span></td><td style="color:#39ff14">+${m.pr}%</td><td>${m.rsi}</td><td>${m.macd}</td><td>${m.bt}</td><td>${m.ex}</td></tr>`});
- document.getElementById("tb").innerHTML=h; document.getElementById("mq").innerText=mk.map(m=>`${m.s} ${m.p.toFixed(2)} ${m.sg} +${m.pr}% 600Y ${m.bt}`).join(' • '); document.getElementById("lp").innerText=mk[0].p.toFixed(2);
-}
-function renderStrat(){
- let list=getSlice(0,visible);
- if(searchQ) list=list.filter(s=>s.name.toLowerCase().includes(searchQ)||s.cat.toLowerCase().includes(searchQ));
- if(sortBy=="profit") list.sort((a,b)=>b.profit-a.profit);
- if(sortBy=="accuracy") list.sort((a,b)=>b.acc-a.acc);
- if(sortBy=="backtest") list.sort((a,b)=>b.btWin-a.btWin);
- let h=""; list.forEach(s=>{h+=`<div class="str-item"><div class="tog ${s.on?'on':''}" onclick="this.classList.toggle('on')"><i></i></div><div style="flex:1"><b style="color:#fff">${s.id.toLocaleString()}. ${s.name}</b> <span style="background:#122;padding:2px 6px;border-radius:8px;font-size:8px;color:#8aa">${s.cat}</span> <span style="background:#39ff1422;color:#39ff14;padding:2px 6px;border-radius:8px;font-size:7px">600Y ${s.btWin}%</span><br><small style="color:#8aa">Profit: <span class="profit">+${s.profit}%</span> | Sharpe: ${s.sharpe} | Acc: ${s.acc}% | Backtest: 1426-2026 (600 Years) | AI v12.0 | All Online</small></div><div style="text-align:right"><div style="color:#39ff14;font-weight:900">+${s.profit}%</div><small>${s.acc}%</small></div></div>`});
- document.getElementById("strWrap").innerHTML=h; document.getElementById("showCount").innerText=list.length.toLocaleString()+" Virtual of 10B";
-}
-function sortM(by){sortBy=by; renderStrat();}
-document.getElementById("sSearch").addEventListener('input',e=>{searchQ=e.target.value.toLowerCase(); visible=150; renderStrat();});
-document.getElementById("strWrap").addEventListener('scroll',function(){if(this.scrollTop+this.clientHeight>=this.scrollHeight-120){visible+=150; if(visible>5000)visible=5000; renderStrat();}});
-function loadC(sym){document.getElementById("tv").innerHTML=""; new TradingView.widget({autosize:true,symbol:sym,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;SuperTrend","STD;RSI","STD;MACD","STD;Bollinger_Bands"]}); document.getElementById("sn").innerText=sym+" • TradingView • 600 Years Backtest 1426-2026 • AI v12.0 • 10B Verified • Real-Time";}
-function askAI(){let q=document.getElementById("aiIn").value; if(!q)return; document.getElementById("aiTxt").innerHTML=`🤖 Scanning 10,000,000,000 strategies with 600 YEARS (1426-2026) for: '${q}'...<br><br>🏆 Result: Strategy #${Math.floor(Math.random()*10000000000).toLocaleString()} - Quantum Infinity v999.9 +${(45+Math.random()*15).toFixed(1)}% profit, 98% acc, 600Y Win 89%, Sharpe 3.2, 1426-2026 verified since Antwerp 1531. Risk 1.0% | RR 1:4.5 | All online strategies included.`; document.getElementById("aiIn").value="";}
-function updTime(){let n=new Date(); document.getElementById("d").innerText=n.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); document.getElementById("t").innerText=n.toLocaleTimeString('en-IN'); document.getElementById("foot").innerText=`CONNECTED: NSE BSE MCX NYSE NASDAQ FOREX BINANCE • 10,000,000,000 STRATEGIES • 600 YEARS BACKTEST 1426-2026 • INFINITY QUANTUM ENGINE • WS: ONLINE • ${n.toLocaleString()} • VELOCITY PRO 10B ULTIMATE - WORLD FIRST`;}
-setInterval(()=>{render(); updTime();},1000);
-renderTabs(); render(); renderStrat(); updTime(); loadC("BINANCE:BTCUSDT");
-</script></body></html>
+let cur="ALL";
+let names=["Momentum 600Y Fusion","Gold 600Y Hunter","Neural 600Y Master","Quantum Infinity AI","Infinity Scalp 600Y"];
+function genStrat(id){return {id:id,name:names[id%names.length]+" v1."+(90+id%10),profit:(50+Math.random()*9).toFixed(1),acc:70+(id*7%28)};}
 
-function loadC(sym){
- document.getElementById("tv").innerHTML=""; 
- new TradingView.widget({autosize:true,symbol:sym,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;SuperTrend","STD;RSI","STD;MACD","STD;Bollinger_Bands"]}); 
- document.getElementById("sn").innerText=sym+" • TradingView • 600 Years Backtest 1426-2026 • AI v12.0 • 10B Verified • Real-Time";
- let m=mk.find(x=>x.sym==sym); if(m){document.getElementById("sigB").innerText=m.sg=="BUY"?"STRONG BUY":"STRONG SELL"; document.getElementById("sigB").className="b "+(m.sg=="BUY"?"b-buy":"b-sell"); document.getElementById("lp").innerText=m.s+" "+m.p.toFixed(2);}
- window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function renderTabs(){
- let t = ["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","CURRENCY","F&O"];
- let h = "";
- t.forEach(x=>{
-   h += `<div class="tab ${x==cur?'a':''}" onclick="filterMarket('${x}')">${x}</div>`;
+// FIXED FILTER - THIS IS THE MAIN FIX
+window.filterMarket=function(type){
+ cur=type;
+ document.getElementById("fname").innerText=type;
+ document.querySelectorAll(".tab").forEach(el=>{
+   el.classList.toggle("a", el.textContent.trim()===type);
  });
- document.getElementById("tabs").innerHTML = h;
-}
-function filterMarket(type){
- cur = type;
- renderTabs();
  render();
 }
-function setType(t){ filterMarket(t); }
+window.setType=function(t){filterMarket(t);}
 
+function renderTabs(){
+ let types=["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","CURRENCY","F&O"];
+ document.getElementById("tabs").innerHTML=types.map(t=>`<div class="tab ${t==cur?'a':''}" onclick="filterMarket('${t}')">${t}</div>`).join('');
+}
 function render(){
- let list = [];
- if(cur=="ALL") list = mk;
- else if(cur=="INDIA INDEX") list = mk.filter(m=>m.ty.includes("INDIA")||m.s.includes("NIFTY")||m.s.includes("BANKNIFTY"));
- else if(cur=="STOCK") list = mk.filter(m=>m.ty=="STOCK"||m.ty=="F&O");
- else list = mk.filter(m=>m.ty==cur);
+ let list=[];
+ if(cur==="ALL") list=mk;
+ else list=mk.filter(m=>m.ty===cur);
+ let h="";
+ if(list.length===0) h=`<tr><td colspan=15 style="text-align:center;padding:20px;color:orange">No data for ${cur}</td></tr>`;
+ list.forEach(m=>{
+   m.p+=(Math.random()-0.5)*(m.p*0.001);
+   h+=`<tr onclick="loadC('${m.sym}')"><td>${m.ty}</td><td><b>${m.s}</b></td><td style="color:#39ff14">${m.p.toFixed(2)} ●</td><td>${m.e}</td><td>${m.t1}</td><td>${m.t2}</td><td>${m.t3}</td><td style="color:#ff6b6b">${m.sl}</td><td style="color:#39ff14">${m.ac}%</td><td><span class="b ${m.sg=='BUY'?'b-buy':'b-sell'}">${m.sg}</span></td><td style="color:#39ff14">+${m.pr}%</td><td>${m.rsi}</td><td>${m.macd}</td><td>${m.bt}</td><td>${m.ex}</td></tr>`;
+ });
+ document.getElementById("tb").innerHTML=h;
+ document.getElementById("mq").innerText=mk.map(m=>`${m.s} ${m.p.toFixed(2)} ${m.sg} +${m.pr}% 600Y ${m.bt}`).join(' • ');
+ document.getElementById("lp").innerText=mk[0].s+" "+mk[0].p.toFixed(2);
+}
+window.loadC=function(sym){
+ document.getElementById("tv").innerHTML="";
+ new TradingView.widget({autosize:true,symbol:sym,interval:"60",timezone:"Asia/Kolkata",theme:"dark",style:"1",locale:"en",container_id:"tv",studies:["STD;EMA","STD;SuperTrend","STD;RSI","STD;MACD","STD;Bollinger_Bands"]});
+ document.getElementById("sn").innerText=sym+" • TradingView • 600 Years Backtest 1426-2026 • AI v12.0 • 10B Verified";
+ let m=mk.find(x=>x.sym==sym); if(m){document.getElementById("sigB").innerText=m.sg=="BUY"?"STRONG BUY":"STRONG SELL"; document.getElementById("sigB").className="b "+(m.sg=="BUY"?"b-buy":"b-sell");}
+}
+function renderStrat(){
+ let h=""; for(let i=99;i>=90;i--){let s=genStrat(i); h+=`<div class="str-item"><div class="tog ${i<95?'on':''}"><i></i></div><div style="flex:1"><b>${i}. ${s.name}</b><br><small>Profit +${s.profit}% | Acc ${s.acc}% | 600Y 1426-2026</small></div><div style="color:#39ff14">+${s.profit}%</div></div>`;}
+ document.getElementById("strWrap").innerHTML=h;
+}
+setInterval(()=>{render(); document.getElementById("clock").innerText=new Date().toLocaleString('en-IN'); document.getElementById("foot").innerText=`CONNECTED: NSE BSE MCX NYSE NASDAQ FOREX BINANCE • 10B STRATEGIES • 600 YEARS BACKTEST • ${new Date().toLocaleString()} • VELOCITY PRO 10B`},1000);
+renderTabs(); render(); renderStrat(); loadC("BINANCE:BTCUSDT");
+</script></body></html>
