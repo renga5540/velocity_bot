@@ -94,3 +94,19 @@ function loadC(sym){
  let m=mk.find(x=>x.sym==sym); if(m){document.getElementById("sigB").innerText=m.sg=="BUY"?"STRONG BUY":"STRONG SELL"; document.getElementById("sigB").className="b "+(m.sg=="BUY"?"b-buy":"b-sell"); document.getElementById("lp").innerText=m.s+" "+m.p.toFixed(2);}
  window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function renderTabs(){
+ let t = ["ALL","INDIA INDEX","STOCK","COMMODITY","CRYPTO","US INDEX","FOREX","CURRENCY","F&O"];
+ let h = "";
+ t.forEach(x=>{
+   h += `<div class="tab ${x==cur?'a':''}" onclick="filterMarket('${x}')">${x}</div>`;
+ });
+ document.getElementById("tabs").innerHTML = h;
+}
+function filterMarket(type){
+ cur = type;
+ renderTabs();
+ render();
+}
+function setType(t){ filterMarket(t); }
+
